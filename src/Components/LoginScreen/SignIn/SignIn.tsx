@@ -1,6 +1,7 @@
 
 
 // CSS import //
+import { Link } from 'react-router-dom';
 import './SignIn.css';
 
 
@@ -20,6 +21,7 @@ const SignIn = () => {
                 </div>
                 <button>Submit</button>
             </form>
+            <Link to="/CharacterSelect"><button>Character Select (temp)</button></Link>
         </main>
     )
 }

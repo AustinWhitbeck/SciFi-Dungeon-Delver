@@ -1,4 +1,6 @@
 
+// CSS 
+import './BrandFooter.css';
 
 const BrandFooter = () => {
 
