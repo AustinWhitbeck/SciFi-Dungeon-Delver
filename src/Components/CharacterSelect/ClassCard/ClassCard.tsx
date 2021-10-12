@@ -2,12 +2,18 @@ import { CharacterClass } from "../../Model/Interfaces";
 
 interface Props {
     characterClass: CharacterClass;
+    updateUserProfile: (characterClass: CharacterClass) => void;
 }
 
-const ClassCard = ({characterClass}: Props) => {
+const ClassCard = ({characterClass, updateUserProfile}: Props) => {
+
+    const handleSubmit = () => {
+        updateUserProfile(characterClass);
+    }
 
     return(
         <main>
+            <form action="submit" onSubmit={handleSubmit}>
             <h4>{characterClass.name}</h4>
             <div>
                 <p>Physical Attack: {characterClass.physAtk}</p>
@@ -17,6 +23,8 @@ const ClassCard = ({characterClass}: Props) => {
                 <p>Magic Attack: {characterClass.magAtk}</p>
                 <p>Magic Defense: {characterClass.magDef}</p>
             </div>
+            <button>Choose Class</button>
+            </form>
             
         </main>
     )
