@@ -3,6 +3,7 @@
 export interface CharacterClass {
         index: number,
         name: string,
+        health: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
@@ -10,13 +11,14 @@ export interface CharacterClass {
 }
 
 export interface UserStats {
-        userName: string,
-        name: string,
+        userName?: string | undefined,
+        name?: string,
+        health: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
         magDef: number
-        exp: number
+        exp?: number
 }
 export interface UserProfile {
         CurrentUserProfile: UserStats,

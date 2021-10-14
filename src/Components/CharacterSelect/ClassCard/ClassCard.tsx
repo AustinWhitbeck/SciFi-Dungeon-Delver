@@ -1,4 +1,6 @@
+import { FormEvent, useContext } from "react";
 import { CharacterClass } from "../../Model/Interfaces";
+import { UserContext} from "../../../ContextProvider/UserContextProvider"
 
 interface Props {
     characterClass: CharacterClass;
@@ -7,8 +9,14 @@ interface Props {
 
 const ClassCard = ({characterClass, updateUserProfile}: Props) => {
 
-    const handleSubmit = () => {
-        updateUserProfile(characterClass);
+    const {userStats, updateUserStats} = useContext(UserContext);
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        console.log(userStats);
+        console.log(characterClass);
+        updateUserStats(characterClass);
+        console.log(userStats);
     }
 
     return(

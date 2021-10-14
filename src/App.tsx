@@ -10,13 +10,17 @@ import BrandFooter from './Components/BrandFooter/BrandFooter';
 import CharacterSelect from './Components/CharacterSelect/CharacterSelect';
 import Header from './Components/Header/Header';
 import LoginScreen from './Components/LoginScreen/LoginScreen';
+import { UserContextProvider } from './ContextProvider/UserContextProvider';
+
 
 
 
 function App() {
   return (
     <div className="App">
+      
       <Router>
+        <UserContextProvider>
         <Header/>
 
         <Route path="/" exact>
@@ -26,8 +30,8 @@ function App() {
             <CharacterSelect/>
         </Route>
 
-        <BrandFooter/>
-        
+        {/* <BrandFooter/> */}
+        </UserContextProvider>
       </Router>
     </div>
   );

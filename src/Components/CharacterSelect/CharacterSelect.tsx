@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { CurrentUserContext } from "../../ContextProvider/CurrentUserProvider";
+import { FormEvent, useContext } from "react";
+import { UserContext } from "../../ContextProvider/UserContextProvider";
+import BackButton from "../Buttons/BackButton/BackButton";
 import { CharacterClass } from "../Model/Interfaces";
 import ClassCard from "./ClassCard/ClassCard";
 
@@ -8,7 +9,7 @@ const CharacterSelect = () => {
 
     // Imported Current User profile, use to update with options
 
-    const {CurrentUserProfile, updateCurrentUser} = useContext(CurrentUserContext);
+    const {userStats, updateUserStats} = useContext(UserContext);
 
 
     // Temporary Character Class List
@@ -17,6 +18,7 @@ const CharacterSelect = () => {
         {
             index: 1,
             name: "Street Brawler",
+            health: 14,
             physAtk: 2,
             physDef: 2,
             magAtk: 0,
@@ -25,6 +27,7 @@ const CharacterSelect = () => {
         {
             index: 2,
             name: "Cyber Ninja",
+            health: 8,
             physAtk: 3,
             physDef: 1,
             magAtk: 1,
@@ -33,6 +36,7 @@ const CharacterSelect = () => {
         {
             index: 3,
             name: "Jedi",
+            health: 10,
             physAtk: 3,
             physDef: 1,
             magAtk: 1,
@@ -43,9 +47,9 @@ const CharacterSelect = () => {
 
     // Function to update user profile to the selected choice
 
-    const updateUserProfile = () => {
-        
-    }
+  
+
+    
 
     return(
         <main>
@@ -53,7 +57,11 @@ const CharacterSelect = () => {
             <div>
                 <h3>Current User Profile</h3>
                 <ul>
-                    <li>{CurrentUserProfile.name}</li>
+                    <li>Class Name:{userStats.name}</li>
+                    <li>Magic Attack:{userStats.magAtk}</li>
+                    <li>Magic Defense: {userStats.magDef}</li>
+                    <li>Physical Attack:{userStats.physAtk}</li>
+                    <li>Physical Defense: {userStats.physDef}</li>
                 </ul>
             </div>
             <div>
@@ -61,11 +69,11 @@ const CharacterSelect = () => {
                 <ClassCard
                     key={`${characterClass.name}-${index}`}
                     characterClass={characterClass}
-                    updateUserProfile={updateUserProfile()}
+                    updateUserProfile={ (characterClass) => updateUserStats(characterClass)}
                 />
             )}
             </div>
-
+            <BackButton/>
         </main>
     )
 }

@@ -6,6 +6,7 @@ let defaultClasses: CharacterClass[] = [
     {
         index: 0,
         name: "fighter",
+        health: 12,
         physAtk: 2,
         physDef: 2,
         magAtk: 0,
