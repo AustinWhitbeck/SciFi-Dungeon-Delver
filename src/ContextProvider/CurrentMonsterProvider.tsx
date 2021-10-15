@@ -1,75 +1,58 @@
 import React, { ReactNode, useState, useContext } from "react";
-import { UserStats } from "../Components/Model/Interfaces";
+import { MonsterStats, UserStats } from "../Components/Model/Interfaces";
 
 
 interface MonsterContext  {
-    userStats: MonsterStats,
-    updateUserStats: (stats: UserStats) => void,
-    updateUserName: (newName: string) => void,
+    currentMonster: MonsterStats,
+    updateCurrentMonster: (stats: MonsterStats) => void,
 }
 
-const defaultUserValue: UserContext = {
-    userStats: {
-        userName: "default name",
-        name: "none",
+const defaultUserValue: MonsterContext = {
+    currentMonster: {
+        monsterName: "none",
         health: 0,
         physAtk: 0,
         physDef: 0,
         magAtk: 0,
         magDef: 0,
-        exp: 0
+        xp: 0
     },
-    updateUserStats: (stats: UserStats) => {},
-    updateUserName: (newName: string) => {}
+    updateCurrentMonster: (stats: MonsterStats) => {},
 }
 
 
-export const UserContext = React.createContext(defaultUserValue);
+export const MonsterContext = React.createContext(defaultUserValue);
 
 
 export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
 
-    const [userStats, setUserStats] = useState<UserStats>({
-        userName: "user name",
-        name: "none",
+    const [currentMonster, setCurrentMonster] = useState<MonsterStats>({
+        monsterName: "none",
         health: 0,
         physAtk: 0,
         physDef: 0,
         magAtk: 0,
         magDef: 0,
-        exp: 0
+        xp: 0
     })
 
-    const updateUserStats = (stats: UserStats) => {
-        setUserStats({
-            userName: userStats.userName,
-            name: stats.name,
+    const updateCurrentMonster = (stats: MonsterStats) => {
+        setCurrentMonster({
+            monsterName: stats.monsterName,
             health: stats.health,
             physAtk: stats.physAtk,
             physDef: stats.physDef,
             magAtk: stats.magAtk,
             magDef: stats.magDef,
-            exp: userStats.exp
+            xp: stats.xp
         });
     }
 
-    const updateUserName = (newName: string) => {
-        setUserStats({
-            userName: newName,
-            name: userStats.name,
-            health: userStats.health,
-            physAtk: userStats.physAtk,
-            physDef: userStats.physDef,
-            magAtk: userStats.magAtk,
-            magDef: userStats.magDef,
-            exp: userStats.exp
-        })
-    }
 
     return (
-        <UserContext.Provider value={{userStats, updateUserStats, updateUserName}}>
+        <MonsterContext.Provider value={{currentMonster, updateCurrentMonster}}>
             {children}
-        </UserContext.Provider>
+        </MonsterContext.Provider>
     )
 
 }

@@ -1,4 +1,4 @@
-
+// Player interfaces
 
 export interface CharacterClass {
         index: number,
@@ -20,7 +20,24 @@ export interface UserStats {
         magDef: number
         exp?: number
 }
+
+
 export interface UserProfile {
         CurrentUserProfile: UserStats,
         updateCurrentUser: (stats: UserStats) => void
 }
+
+// Monster interfaces
+
+export interface MonsterStats {
+        monsterName?: string,
+        health: number,
+        physAtk: number,
+        physDef: number,
+        magAtk: number,
+        magDef: number
+        xp: number
+}
+
+
+
