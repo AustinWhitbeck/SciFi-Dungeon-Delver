@@ -15,7 +15,7 @@ const ActiveMonster = () => {
     const allMonsters: MonsterStats[] = [
         {
             monsterName: "Space Goblin",
-            health: 6,
+            health: 20,
             physAtk: 2,
             physDef: 1,
             magAtk: 1,
@@ -24,11 +24,11 @@ const ActiveMonster = () => {
         },
         {
             monsterName: "Void Appartion",
-            health: 4,
+            health: 25,
             physAtk: 2,
-            physDef: 3,
+            physDef: 6,
             magAtk: 2,
-            magDef: 3,
+            magDef: 1,
             xp: 5
         }
     ]
