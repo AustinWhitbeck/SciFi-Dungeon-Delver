@@ -17,7 +17,7 @@ const FightScreen = () => {
 
     // reuseable functions
 
-    const damageComparison = () => {
+    const damageComparisonUser = () => {
         let damage = userStats.physAtk - currentMonster.physDef;
         // let damagedHealth: number = 0;
         if (damage <= 0) {
@@ -28,11 +28,13 @@ const FightScreen = () => {
             damagedHealth = currentMonster.health - damage;
             console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
         } 
-    }
+
+
+    }// User Attacks
 
 
     const userPhysAttack = () => {
-        damageComparison();
+        damageComparisonUser();
         
         updateCurrentMonster({
             monsterName: currentMonster.monsterName,
@@ -47,8 +49,8 @@ const FightScreen = () => {
     }
 
     const userMagAttack = () => {
-        damageComparison();
-        
+        damageComparisonUser();
+
         updateCurrentMonster({
             monsterName: currentMonster.monsterName,
             health: damagedHealth,
@@ -60,6 +62,8 @@ const FightScreen = () => {
         })
         console.log(currentMonster);
     }
+
+    
 
  
 
