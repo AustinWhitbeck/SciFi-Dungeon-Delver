@@ -8,15 +8,22 @@ import BrandFooter from './Components/BrandFooter/BrandFooter';
 
 // Imported components
 import CharacterSelect from './Components/CharacterSelect/CharacterSelect';
+import FightScreen from './Components/FightScreen/FightScreen';
 import Header from './Components/Header/Header';
 import LoginScreen from './Components/LoginScreen/LoginScreen';
+import { MonsterContextProvider } from './ContextProvider/CurrentMonsterProvider';
+import { UserContextProvider } from './ContextProvider/UserContextProvider';
+
 
 
 
 function App() {
   return (
     <div className="App">
+      
       <Router>
+        <MonsterContextProvider>
+        <UserContextProvider>
         <Header/>
 
         <Route path="/" exact>
@@ -26,8 +33,12 @@ function App() {
             <CharacterSelect/>
         </Route>
 
-        <BrandFooter/>
-        
+        {/* <BrandFooter/> */}
+        <Route path="/FightScreen" exact>
+            <FightScreen/>
+        </Route>
+        </UserContextProvider>
+        </MonsterContextProvider>
       </Router>
     </div>
   );
