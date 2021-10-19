@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../ContextProvider/CurrentUserProvider";
-import { CharacterClass } from "../Model/Interfaces";
+import { CharacterClass, UserProfile } from "../Model/Interfaces";
 import ClassCard from "./ClassCard/ClassCard";
 
 
@@ -43,8 +43,8 @@ const CharacterSelect = () => {
 
     // Function to update user profile to the selected choice
 
-    const updateUserProfile = () => {
-        
+    const updateUserProfile = (characterClass: UserProfile) => {
+
     }
 
     return(
