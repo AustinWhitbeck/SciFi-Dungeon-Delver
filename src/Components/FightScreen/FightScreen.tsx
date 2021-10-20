@@ -3,6 +3,7 @@ import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import ActivePlayer from "../ActivePlayer/ActivePlayer";
 import RandomMonsterButton from "../Buttons/RandomMonsterButton/RandomMonsterButton";
+import DialogueBox from "../DialogueBox/DialogueBox";
 import ActiveMonster from "../Monsters/ActiveMonster";
 
 // CSS
@@ -14,6 +15,9 @@ const FightScreen = () => {
     // context providers
     const {userStats, updateUserStats} = useContext(UserContext);
     const {currentMonster, updateCurrentMonster} = useContext(MonsterContext);
+
+    // temp text for dialogue box
+    let text = "";
 
     // temp health
     let damagedHealth: number = 0;
@@ -37,6 +41,8 @@ const FightScreen = () => {
             damagedHealth = currentMonster.health - damage;
             console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
         } 
+
+        text = `You did ${damage} physical damage to the ${currentMonster.monsterName}!`;
 
 
     }// User Attacks
@@ -87,8 +93,13 @@ const FightScreen = () => {
                     <RandomMonsterButton/>
             </section>
             <section className="UserVsPlayerContainer">
-                    <ActiveMonster/>
                     <ActivePlayer/>
+                    <ActiveMonster/>
+            </section>
+            <section>
+                    <DialogueBox
+                    text={text}
+                    />
             </section>
         </main>
     )

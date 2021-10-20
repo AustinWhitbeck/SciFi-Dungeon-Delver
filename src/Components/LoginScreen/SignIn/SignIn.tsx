@@ -33,16 +33,16 @@ const SignIn = () => {
             <p>What is your Name?</p>
             <form action="submit" onSubmit={handleUserNameSubmit}>
                 <div className="InputContainer">
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" placeholder="Username" value={loginInfo.userName} onChange={newName}/>
+                    <label htmlFor="username">Character Name: </label>
+                    <input type="text" name="username" placeholder="Name" value={loginInfo.userName} onChange={newName}/>
                 </div>
-                <div className="InputContainer">
+                {/* <div className="InputContainer">
                     <label htmlFor="password">Password: </label>
                     <input type="text" name="password" placeholder="Password" />
-                </div>
-                <button>Submit</button>
+                </div> */}
+                <button>Finalize</button>
             </form>
-            <Link to="/CharacterSelect"><button>Character Select (temp)</button></Link>
+            <Link to="/CharacterSelect"><button>Choose your Class</button></Link>
         </main>
     )
 }

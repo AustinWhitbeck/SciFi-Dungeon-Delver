@@ -30,8 +30,8 @@ export const UserContext = React.createContext(defaultUserValue);
 export const UserContextProvider = ({children}: {children: ReactNode}) => {
 
     const [userStats, setUserStats] = useState<UserStats>({
-        userName: "user name",
-        name: "none",
+        userName: "",
+        name: "",
         health: 0,
         physAtk: 0,
         physDef: 0,

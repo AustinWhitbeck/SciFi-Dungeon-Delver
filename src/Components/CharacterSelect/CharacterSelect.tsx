@@ -32,7 +32,7 @@ const CharacterSelect = () => {
             index: 2,
             name: "Cyber Ninja",
             health: 8,
-            physAtk: 3,
+            physAtk: 4,
             physDef: 1,
             magAtk: 1,
             magDef: 2
@@ -57,16 +57,18 @@ const CharacterSelect = () => {
     return(
         <main className="CharacterSelectContainer">
             <h2>Character Select</h2>
-            <section>
+            <section className="CurrentUserStatsContainer">
                 <h3>Current User Profile</h3>
                 <ul>
                     <li>Class Name: {userStats.name}</li>
+                    <li>Health: {userStats.health}</li>
                     <li>Magic Attack: {userStats.magAtk}</li>
                     <li>Magic Defense: {userStats.magDef}</li>
                     <li>Physical Attack: {userStats.physAtk}</li>
                     <li>Physical Defense: {userStats.physDef}</li>
                 </ul>
             </section>
+            <h2>Class Options</h2>
             <section className="ClassOptionsContainer">
             {classList.map((characterClass, index) => 
                 <ClassCard

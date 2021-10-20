@@ -10,4 +10,5 @@ main.FightScreenContainer {
 main.FightScreenContainer section.UserVsPlayerContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }

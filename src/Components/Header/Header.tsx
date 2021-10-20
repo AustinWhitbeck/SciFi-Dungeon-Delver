@@ -13,7 +13,7 @@ const Header = () => {
     return(
         <header className="HeaderContainer">
             <div>
-                <h2 className="HeaderUserName">{userStats.userName}</h2>
+                <h2 className="HeaderUserName">{userStats.userName} the {userStats.name}.</h2>
             </div>
             <HeaderNav/>
         </header>

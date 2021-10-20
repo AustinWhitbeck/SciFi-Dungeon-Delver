@@ -28,7 +28,6 @@ function App() {
 
         <Route path="/" exact>
             <LoginScreen/>
-            <CharacterSelect/>
         </Route>
         <Route path="/CharacterSelect" exact>
             <CharacterSelect/>
