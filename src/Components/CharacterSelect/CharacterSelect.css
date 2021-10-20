@@ -1,0 +1,17 @@
+/* Main Container */
+
+main.CharacterSelectContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Sub Containers */
+
+main.CharacterSelectContainer section.ClassOptionsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

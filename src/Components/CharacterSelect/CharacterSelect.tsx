@@ -4,6 +4,10 @@ import BackButton from "../Buttons/BackButton/BackButton";
 import { CharacterClass } from "../Model/Interfaces";
 import ClassCard from "./ClassCard/ClassCard";
 
+// CSS
+
+import "./CharacterSelect.css";
+
 
 const CharacterSelect = () => {
 
@@ -19,7 +23,7 @@ const CharacterSelect = () => {
             index: 1,
             name: "Street Brawler",
             health: 14,
-            physAtk: 2,
+            physAtk: 5,
             physDef: 2,
             magAtk: 0,
             magDef: 1
@@ -35,7 +39,7 @@ const CharacterSelect = () => {
         },
         {
             index: 3,
-            name: "Jedi",
+            name: "Mystic Sword",
             health: 10,
             physAtk: 3,
             physDef: 1,
@@ -51,19 +55,19 @@ const CharacterSelect = () => {
 
 
     return(
-        <main>
+        <main className="CharacterSelectContainer">
             <h2>Character Select</h2>
-            <div>
+            <section>
                 <h3>Current User Profile</h3>
                 <ul>
-                    <li>Class Name:{userStats.name}</li>
-                    <li>Magic Attack:{userStats.magAtk}</li>
+                    <li>Class Name: {userStats.name}</li>
+                    <li>Magic Attack: {userStats.magAtk}</li>
                     <li>Magic Defense: {userStats.magDef}</li>
-                    <li>Physical Attack:{userStats.physAtk}</li>
+                    <li>Physical Attack: {userStats.physAtk}</li>
                     <li>Physical Defense: {userStats.physDef}</li>
                 </ul>
-            </div>
-            <div>
+            </section>
+            <section className="ClassOptionsContainer">
             {classList.map((characterClass, index) => 
                 <ClassCard
                     key={`${characterClass.name}-${index}`}
@@ -71,7 +75,7 @@ const CharacterSelect = () => {
                     updateUserProfile={ (characterClass) => updateUserStats(characterClass)}
                 />
             )}
-            </div>
+            </section>
             <BackButton/>
         </main>
     )

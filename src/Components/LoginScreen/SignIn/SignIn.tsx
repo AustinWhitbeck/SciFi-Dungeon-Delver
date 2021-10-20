@@ -18,11 +18,7 @@ const SignIn = () => {
     // Functions
     const handleUserNameSubmit = (e: FormEvent) => {
             e.preventDefault();
-            console.log(userStats);
             updateUserName(loginInfo.userName);
-            console.log(userStats);
-
-
     }
 
     const [loginInfo, setLoginInfo] = useState({

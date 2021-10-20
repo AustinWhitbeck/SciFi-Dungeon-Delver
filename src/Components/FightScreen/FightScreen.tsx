@@ -2,7 +2,11 @@ import { useContext } from "react";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import ActivePlayer from "../ActivePlayer/ActivePlayer";
+import RandomMonsterButton from "../Buttons/RandomMonsterButton/RandomMonsterButton";
 import ActiveMonster from "../Monsters/ActiveMonster";
+
+// CSS
+import "./FightScreen.css";
 
 
 const FightScreen = () => {
@@ -17,8 +21,13 @@ const FightScreen = () => {
 
     // reuseable functions
 
+    const randomisedDamage2 = () => {
+        return Math.floor(Math.random() * 2) 
+    }
+
     const damageComparisonUser = () => {
-        let damage = userStats.physAtk - currentMonster.physDef;
+        let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
+        console.log("user attack and randomized damage", damage);
         // let damagedHealth: number = 0;
         if (damage <= 0) {
             damagedHealth = currentMonster.health;
@@ -63,26 +72,23 @@ const FightScreen = () => {
         console.log(currentMonster);
     }
 
+
+    // Monster attack
     
 
  
 
 
     return(
-        <main>
-            <section>
-                
+        <main className="FightScreenContainer">
+            <section className="UserAbilityButtons">
                     <button onClick={userPhysAttack}>Physical Attack</button>
                     <button onClick={userMagAttack}>Magic Attack</button>
-            
+                    <RandomMonsterButton/>
             </section>
-            <section>
-                <div>
+            <section className="UserVsPlayerContainer">
                     <ActiveMonster/>
-                </div>
-                <div>
                     <ActivePlayer/>
-                </div>
             </section>
         </main>
     )

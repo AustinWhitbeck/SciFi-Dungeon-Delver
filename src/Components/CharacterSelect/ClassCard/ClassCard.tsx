@@ -2,6 +2,9 @@ import { FormEvent, useContext } from "react";
 import { CharacterClass } from "../../Model/Interfaces";
 import { UserContext} from "../../../ContextProvider/UserContextProvider"
 
+// CSS import
+import "./ClassCard.css";
+
 interface Props {
     characterClass: CharacterClass;
     updateUserProfile: (characterClass: CharacterClass) => void;
@@ -20,7 +23,7 @@ const ClassCard = ({characterClass, updateUserProfile}: Props) => {
     }
 
     return(
-        <main>
+        <main className="ClassCardContainer">
             <form action="submit" onSubmit={handleSubmit}>
             <h4>{characterClass.name}</h4>
             <div>
