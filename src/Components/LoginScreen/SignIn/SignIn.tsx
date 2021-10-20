@@ -30,7 +30,7 @@ const SignIn = () => {
 
     return(
         <main className="SignInContainer">
-            <p>Sign In</p>
+            <p>What is your Name?</p>
             <form action="submit" onSubmit={handleUserNameSubmit}>
                 <div className="InputContainer">
                     <label htmlFor="username">Username: </label>
