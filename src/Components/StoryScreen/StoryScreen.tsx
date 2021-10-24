@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
 import DialogueBox from "../DialogueBox/DialogueBox";
+
+// CSS import
+import './StoryScreen.css';
 
 
 const StoryScreen = () => {
@@ -9,34 +13,57 @@ const StoryScreen = () => {
     // Imported Contexts
     const {storyChapter} = useContext(StoryChapterContext);
 
-    // On click to progress to next dialogue
-    let currentDialogueQue = 0;
+    // count code
 
-    const nextText = () =>{
-        console.log(currentDialogueQue);
-        currentDialogueQue ++;
-        if (currentDialogueQue < chapterOneDialogues.length){
-        setText(chapterOneDialogues[currentDialogueQue]);
-        } else {
-            setText("This is the end of the dialogue");
-        }
-        // text = newText;
-        console.log(currentDialogueQue);
-    }
+    const [count, setCount] = useState(0);
+    console.log("this is the count on startup", count);
+
+    // next screen variable
+
+    let nextScreen = "hidden";
 
     // Chapter 1 dialogue
 
     const chapterOneDialogues = [
-        "sample 1",
-        "some other text 2",
-        "a third text 3"
+        "Hello, I am the NPC who is giving you a quest Number 1",
+        "This is what I want you to do. Number 2",
+        "this is test 3",
+        "this is test 4",
+        "First, prove to me that you are combat efficient, what monster shall we have you fight first hm? Show me your skill! Number 5"
     ]
+    console.log("length of the chapter dialogues array", chapterOneDialogues.length)
+
+
+
+    const increaseCount = () => {
+        console.log("count function is running");
+        console.log(count);
+        let newCount = count + 1;
+        console.log("temp variable newCount", newCount);
+        setCount(newCount);
+        console.log ("this is the count after the setCount function", count);
+
+    }
+
+    // On click to progress to next dialogue
+
+    const nextText = () =>{
+        increaseCount();
+        if(count > chapterOneDialogues.length) {
+            nextScreen = "";
+            setText("This is the end of the dialogue, begin the fight!");
+        } else {
+        setText(chapterOneDialogues[count]);
+        }
+        console.log("count after increase", count);
+    }
+
 
     // text variable
     const [text, setText] = useState(chapterOneDialogues[0])
 
     return(
-        <main>
+        <main className="StoryScreenContainer">
             <section>Chapter: {storyChapter}</section>
             <section>
                 <DialogueBox
@@ -45,7 +72,10 @@ const StoryScreen = () => {
             </section>
             <section>
                 <button onClick={nextText}>Next</button>
+                <span>{count}</span>
+                <button onClick={increaseCount}>Increase count</button>
             </section>
+                <Link to="/FightScreen"><button>Go to fight</button></Link>
         </main>
     )
 }
