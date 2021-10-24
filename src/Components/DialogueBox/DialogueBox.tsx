@@ -1,13 +1,17 @@
 
+
+// CSS
+import './DialogueBox.css';
+
 interface Props {
-    text: string;
+    dialogueText: string;
 }
 
-const DialogueBox = ({text}: Props) => {
+const DialogueBox = ({dialogueText}: Props) => {
 
     return(
-        <main>
-            <section>Text: {text}</section>
+        <main className="DialogueBoxContainer">
+            <section className="DialogueSection">{dialogueText} </section>
         </main>
     )
 }

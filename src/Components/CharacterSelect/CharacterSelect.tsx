@@ -7,6 +7,7 @@ import ClassCard from "./ClassCard/ClassCard";
 // CSS
 
 import "./CharacterSelect.css";
+import { Link } from "react-router-dom";
 
 
 const CharacterSelect = () => {
@@ -41,13 +42,22 @@ const CharacterSelect = () => {
             index: 3,
             name: "Mystic Sword",
             health: 10,
-            physAtk: 3,
+            physAtk: 2,
             physDef: 1,
-            magAtk: 1,
+            magAtk: 3,
             magDef: 2
         },
 
     ]
+
+    // variable for going to chapter 1 if class is selected
+    let startAdventure = "hidden";
+
+    if (userStats.name === "") {
+        startAdventure = "hidden";
+    } else {
+        startAdventure = "";
+    }
 
     // Function to update user profile to the selected choice
 
@@ -58,7 +68,7 @@ const CharacterSelect = () => {
         <main className="CharacterSelectContainer">
             <h2>Character Select</h2>
             <section className="CurrentUserStatsContainer">
-                <h3>Current User Profile</h3>
+                <h3>{userStats.userName}'s Stats</h3>
                 <ul>
                     <li>Class Name: {userStats.name}</li>
                     <li>Health: {userStats.health}</li>
@@ -78,7 +88,12 @@ const CharacterSelect = () => {
                 />
             )}
             </section>
+            <section className={`ChapterOneStart ${startAdventure}`}>
+                <Link to="/StoryScreen"><button>Go to chapter</button></Link>
+            </section>
+            
             <BackButton/>
+            
         </main>
     )
 }

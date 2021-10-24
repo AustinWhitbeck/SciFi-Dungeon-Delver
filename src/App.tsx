@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Imported styles
 import './App.css';
-import BrandFooter from './Components/BrandFooter/BrandFooter';
 
 // Imported components
 import CharacterSelect from './Components/CharacterSelect/CharacterSelect';
@@ -13,6 +12,8 @@ import Header from './Components/Header/Header';
 import LoginScreen from './Components/LoginScreen/LoginScreen';
 import { MonsterContextProvider } from './ContextProvider/CurrentMonsterProvider';
 import { UserContextProvider } from './ContextProvider/UserContextProvider';
+import { StoryChapterContextProvider } from './ContextProvider/CurrentChapterProvider';
+import StoryScreen from './Components/StoryScreen/StoryScreen';
 
 
 
@@ -24,19 +25,25 @@ function App() {
       <Router>
         <MonsterContextProvider>
         <UserContextProvider>
-        <Header/>
+        <StoryChapterContextProvider>
+          <Header/>
 
-        <Route path="/" exact>
-            <LoginScreen/>
-        </Route>
-        <Route path="/CharacterSelect" exact>
-            <CharacterSelect/>
-        </Route>
+          <Route path="/" exact>
+              <LoginScreen/>
+          </Route>
+          <Route path="/CharacterSelect" exact>
+              <CharacterSelect/>
+          </Route>
 
-        {/* <BrandFooter/> */}
-        <Route path="/FightScreen" exact>
-            <FightScreen/>
-        </Route>
+          <Route path="/FightScreen" exact>
+              <FightScreen/>
+          </Route>
+
+          <Route path="/StoryScreen" exact>
+              <StoryScreen/>
+          </Route>
+
+        </StoryChapterContextProvider>
         </UserContextProvider>
         </MonsterContextProvider>
       </Router>

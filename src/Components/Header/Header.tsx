@@ -4,11 +4,13 @@ import HeaderNav from "./HeaderNav/HeaderNav";
 import './Header.css';
 import { useContext } from "react";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
+import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
 
 
 const Header = () => {
 
     const {userStats} = useContext(UserContext);
+    
 
     return(
         <header className="HeaderContainer">

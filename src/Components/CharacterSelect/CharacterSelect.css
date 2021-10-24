@@ -27,3 +27,8 @@ main.CharacterSelectContainer section.CurrentUserStatsContainer {
     border-color: black;
     border-width: 5px;
 }
+
+
+main.CharacterSelectContainer section.hidden {
+    display: none;
+}

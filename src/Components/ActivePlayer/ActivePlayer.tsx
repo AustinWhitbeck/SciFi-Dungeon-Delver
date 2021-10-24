@@ -2,13 +2,18 @@ import { useContext } from "react";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 
 
+// CSS
+import './ActivePlayer.css';
+
+
 const ActivePlayer = () => {
 
     const {userStats } = useContext(UserContext);
 
     return(
-        <main>
+        <main className="ActivePlayerContainer">
             <h3>Player: {userStats.userName}</h3>
+            <div className="UserImage"></div>
                 <ul>
                     <li>Class Name: {userStats.name}</li>
                     <li>Magic Attack: {userStats.magAtk}</li>

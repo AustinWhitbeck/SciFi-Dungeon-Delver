@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
-import { MonsterStats } from "../Model/Interfaces";
 
 
 const ActiveMonster = () => {
@@ -12,6 +11,7 @@ const ActiveMonster = () => {
         <main>
             <section>
                 <h3>A wild {currentMonster.monsterName}</h3>
+                <div className="monsterImage"></div>
                 <section>Health: {currentMonster.health}</section>
                     <ul>
                         <li>Magic Attack: {currentMonster.magAtk}</li>

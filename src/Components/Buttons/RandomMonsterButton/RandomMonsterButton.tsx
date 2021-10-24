@@ -34,16 +34,6 @@ const RandomMonsterButton = () => {
         }
     ]
 
-    // const assignRandomMonster = (e: FormEvent) => {
-    //     e.preventDefault();
-
-    //     let randomizedMonster = allMonsters[Math.floor(Math.random() * 2)];
-    //     console.log(randomizedMonster);
-    //     console.log(allMonsters);
-    //     updateCurrentMonster(randomizedMonster);
-
-        
-    // }
 
     const assignRandomMonster = () => {
         let randomizedMonster = allMonsters[Math.floor(Math.random() * 2)];
