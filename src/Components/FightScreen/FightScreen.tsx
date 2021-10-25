@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import ActivePlayer from "../ActivePlayer/ActivePlayer";
@@ -15,20 +17,35 @@ const FightScreen = () => {
     // context providers
     const {userStats} = useContext(UserContext);
     const {currentMonster, updateCurrentMonster} = useContext(MonsterContext);
+    const {storyChapter, nextChapter} = useContext(StoryChapterContext);
 
     // temp text for dialogue box
     const [dialogueText, setDialogueText] = useState("test text");
-    // let text = "";
+    
 
-    // temp health
+    
+   
+
+    // Variables for this page
     let damagedHealth: number = 0;
+    const [hidden, setHidden] = useState({
+        attackMenu: "",
+        nextChapterMenu: "hidden"
+    });
+
+
 
 
     // reuseable functions
 
+
+        // randomizer
+
     const randomisedDamage2 = () => {
         return Math.floor(Math.random() * 3) 
     }
+
+        // User Damage
 
     let damageComparisonUser = (damage: number) => {
         if (damage <= 0) {
@@ -52,6 +69,7 @@ const FightScreen = () => {
         setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
         console.log(dialogueText);
         } else {
+            setHidden({attackMenu: "hidden", nextChapterMenu: ""});
             setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
         console.log(dialogueText);
         }
@@ -70,6 +88,7 @@ const FightScreen = () => {
             setDialogueText(`${userStats.userName} did ${damage} magic damage to the ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             } else {
+                setHidden({attackMenu: "hidden", nextChapterMenu: ""});
                 setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             }
@@ -120,7 +139,7 @@ const FightScreen = () => {
 
     return(
         <main className="FightScreenContainer">
-            <section className="UserAbilityButtons">
+            <section className={`UserAbilityButtons ${hidden.attackMenu}`}>
                     <button onClick={userPhysAttack}>Physical Attack</button>
                     <button onClick={userMagAttack}>Magic Attack</button>
                     <RandomMonsterButton/>
@@ -133,6 +152,9 @@ const FightScreen = () => {
                     <DialogueBox
                     dialogueText={dialogueText}
                     />
+            </section>
+            <section className={hidden.nextChapterMenu}>
+                <Link to="/StoryScreen"><button onClick={nextChapter}>Next Chapter</button></Link>
             </section>
         </main>
     )

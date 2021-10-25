@@ -12,3 +12,10 @@ main.FightScreenContainer section.UserVsPlayerContainer {
     flex-direction: row;
     justify-content: space-around;
 }
+
+
+/*  hidden variable */
+
+main.FightScreenContainer section.hidden {
+    display: none;
+}

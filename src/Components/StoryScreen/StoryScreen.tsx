@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
+import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import DialogueBox from "../DialogueBox/DialogueBox";
 
 // CSS import
@@ -12,6 +13,7 @@ const StoryScreen = () => {
 
     // Imported Contexts
     const {storyChapter} = useContext(StoryChapterContext);
+    const {currentMonster, updateCurrentMonster, assignRandomMonster} = useContext(MonsterContext);
 
     // count code
 
@@ -45,13 +47,18 @@ const StoryScreen = () => {
 
     }
 
-    // On click to progress to next dialogue
+    // On click to progress to next dialogue.
+        // NOTE: this also assigns the monster to the fight screen before the user gets to it.
+        // IE - on storyChapter1, it randomzies an enemy.
 
     const nextText = () =>{
         increaseCount();
         if(count > chapterOneDialogues.length) {
             nextScreen = "";
             setText("This is the end of the dialogue, begin the fight!");
+            if (storyChapter == 1){
+                assignRandomMonster();
+            }
         } else {
         setText(chapterOneDialogues[count]);
         }

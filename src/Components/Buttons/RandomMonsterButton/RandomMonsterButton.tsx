@@ -8,41 +8,9 @@ const RandomMonsterButton = () => {
 
     // Current Monster 
 
-    const {updateCurrentMonster} = useContext(MonsterContext);
+    const { allMonsters, assignRandomMonster} = useContext(MonsterContext);
 
 
-    // Monster Array Options
-
-    const allMonsters: MonsterStats[] = [
-        {
-            monsterName: "Space Goblin",
-            health: 20,
-            physAtk: 2,
-            physDef: 1,
-            magAtk: 1,
-            magDef: 0,
-            xp: 5
-        },
-        {
-            monsterName: "Void Appartion",
-            health: 25,
-            physAtk: 2,
-            physDef: 2,
-            magAtk: 2,
-            magDef: 1,
-            xp: 5
-        }
-    ]
-
-
-    const assignRandomMonster = () => {
-        let randomizedMonster = allMonsters[Math.floor(Math.random() * 2)];
-        console.log(randomizedMonster);
-        console.log(allMonsters);
-        updateCurrentMonster(randomizedMonster);
-
-        
-    }
 
     return(
         <main>

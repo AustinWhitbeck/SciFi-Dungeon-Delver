@@ -17,7 +17,8 @@ export const StoryChapterContextProvider = ({children}: {children: ReactNode}) =
     const [storyChapter, setStoryChapter] = useState<number>(1)
 
     const nextChapter = () => {
-        setStoryChapter(storyChapter + 1);
+        let newChapter = storyChapter + 1;
+        setStoryChapter(newChapter);
     }
 
 
