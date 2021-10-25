@@ -56,7 +56,7 @@ const StoryScreen = () => {
         if(count > chapterOneDialogues.length) {
             nextScreen = "";
             setText("This is the end of the dialogue, begin the fight!");
-            if (storyChapter == 1){
+            if (storyChapter.chapterNumber == 1){
                 assignRandomMonster();
             }
         } else {
