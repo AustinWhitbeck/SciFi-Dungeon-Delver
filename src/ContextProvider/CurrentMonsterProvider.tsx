@@ -72,7 +72,26 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
             magAtk: 2,
             magDef: 1,
             xp: 5
+        },
+        {
+            monsterName: "Bad Guy Security",
+            health: 30,
+            physAtk: 3,
+            physDef: 2,
+            magAtk: 3,
+            magDef: 2,
+            xp: 10
+        },
+        {
+            monsterName: "Final Boss",
+            health: 35,
+            physAtk: 4,
+            physDef: 2,
+            magAtk: 4,
+            magDef: 2,
+            xp: 10
         }
+        
     ]
 
 

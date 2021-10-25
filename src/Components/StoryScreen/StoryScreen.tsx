@@ -12,8 +12,8 @@ const StoryScreen = () => {
 
 
     // Imported Contexts
-    const {storyChapter} = useContext(StoryChapterContext);
-    const {currentMonster, updateCurrentMonster, assignRandomMonster} = useContext(MonsterContext);
+    const {storyChapter, currentChapterDialogue } = useContext(StoryChapterContext);
+    const {assignRandomMonster, updateCurrentMonster, allMonsters} = useContext(MonsterContext);
 
     // count code
 
@@ -21,21 +21,12 @@ const StoryScreen = () => {
     console.log("this is the count on startup", count);
 
     // next screen variable
+    const [nextScreen, setNextScreen] = useState("hidden")
 
-    let nextScreen = "hidden";
+    // link variable
+    const [linkPath, setLinkPath] = useState("/FightScreen");
 
-    // Chapter 1 dialogue
-
-    const chapterOneDialogues = [
-        "Hello, I am the NPC who is giving you a quest Number 1",
-        "This is what I want you to do. Number 2",
-        "this is test 3",
-        "this is test 4",
-        "First, prove to me that you are combat efficient, what monster shall we have you fight first hm? Show me your skill! Number 5"
-    ]
-    console.log("length of the chapter dialogues array", chapterOneDialogues.length)
-
-
+    // reusable functions
 
     const increaseCount = () => {
         console.log("count function is running");
@@ -53,21 +44,29 @@ const StoryScreen = () => {
 
     const nextText = () =>{
         increaseCount();
-        if(count > chapterOneDialogues.length) {
-            nextScreen = "";
-            setText("This is the end of the dialogue, begin the fight!");
-            if (storyChapter.chapterNumber == 1){
-                assignRandomMonster();
-            }
+        
+        if(count < currentChapterDialogue.length) {
+            setText(currentChapterDialogue[count]);
         } else {
-        setText(chapterOneDialogues[count]);
+            setNextScreen("");
+            setText("This is the end of the dialogue, begin the fight!");
+            if (storyChapter == 1){
+                assignRandomMonster();
+            } else if (storyChapter == 2){
+                updateCurrentMonster(allMonsters[2]);
+            } else if (storyChapter == 3){
+                updateCurrentMonster(allMonsters[3]);
+            } else {
+                setLinkPath("/FinalScreen");
+            }
         }
         console.log("count after increase", count);
     }
 
 
+
     // text variable
-    const [text, setText] = useState(chapterOneDialogues[0])
+    const [text, setText] = useState(currentChapterDialogue[0])
 
     return(
         <main className="StoryScreenContainer">
@@ -82,7 +81,9 @@ const StoryScreen = () => {
                 <span>{count}</span>
                 <button onClick={increaseCount}>Increase count</button>
             </section>
-                <Link to="/FightScreen"><button>Go to fight</button></Link>
+            <section className={nextScreen}>
+                <Link to={linkPath}><button>Go to fight</button></Link>
+            </section>
         </main>
     )
 }

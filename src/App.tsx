@@ -14,6 +14,7 @@ import { MonsterContextProvider } from './ContextProvider/CurrentMonsterProvider
 import { UserContextProvider } from './ContextProvider/UserContextProvider';
 import { StoryChapterContextProvider } from './ContextProvider/CurrentChapterProvider';
 import StoryScreen from './Components/StoryScreen/StoryScreen';
+import FinalScreen from './Components/FinalScreen/FinalScreen';
 
 
 
@@ -41,6 +42,10 @@ function App() {
 
           <Route path="/StoryScreen" exact>
               <StoryScreen/>
+          </Route>
+
+          <Route path="/FinalScreen" exact>
+              <FinalScreen/>
           </Route>
 
         </StoryChapterContextProvider>
