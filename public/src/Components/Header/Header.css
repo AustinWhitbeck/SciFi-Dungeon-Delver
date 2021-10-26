@@ -1,0 +1,12 @@
+header.HeaderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-style: solid;
+    padding: 10px 8px;
+    margin-bottom: 10px;
+}
+
+header.HeaderContainer h2.HeaderUserName {
+    margin: 0;
+}

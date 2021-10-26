@@ -1,0 +1,15 @@
+
+main.ActivePlayerContainer div.UserImage{
+
+    /* size */
+    width: 90px;
+    height: 150px;
+
+    /* border */
+    border-style: solid;
+    border-color: black;
+    
+    /* colors */
+    background-color: rgb(179, 214, 235);
+}
+

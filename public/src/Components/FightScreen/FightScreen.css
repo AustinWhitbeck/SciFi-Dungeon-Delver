@@ -1,0 +1,21 @@
+main.FightScreenContainer {
+
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+main.FightScreenContainer section.UserVsPlayerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+/*  hidden variable */
+
+main.FightScreenContainer section.hidden {
+    display: none;
+}

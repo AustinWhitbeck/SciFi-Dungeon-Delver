@@ -1,0 +1,18 @@
+/* Main Container */
+
+main.BackButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+/* Button */
+
+main.BackButtonContainer button.BackButton {
+
+    /* Size */
+    width: 200px;
+    height: 50px;
+
+    /* Border */
+    border-radius: 5px;
+}

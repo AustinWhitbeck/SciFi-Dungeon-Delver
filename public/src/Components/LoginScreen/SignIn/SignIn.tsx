@@ -12,18 +12,13 @@ const SignIn = () => {
     // imported state
     const {userStats, updateUserName} = useContext(UserContext);
     
-    // hidden variable
-    const [hidden, setHidden] = useState({
-        userName: "",
-        classes: "hidden"
-    });
+    // temp username
 
 
     // Functions
     const handleUserNameSubmit = (e: FormEvent) => {
             e.preventDefault();
             updateUserName(loginInfo.userName);
-            setHidden({userName: "hidden", classes: ""});
     }
 
     const [loginInfo, setLoginInfo] = useState({
@@ -34,7 +29,7 @@ const SignIn = () => {
     const newName = (e: any) => setLoginInfo({userName: e.target.value, password: loginInfo.password})
 
     return(
-        <main className={`SignInContainer ${hidden.userName}`}>
+        <main className="SignInContainer">
             <p>What is your Name?</p>
             <form action="submit" onSubmit={handleUserNameSubmit}>
                 <div className="InputContainer">
@@ -45,11 +40,9 @@ const SignIn = () => {
                     <label htmlFor="password">Password: </label>
                     <input type="text" name="password" placeholder="Password" />
                 </div> */}
-                <button className={hidden.userName}>Finalize</button>
+                <button>Finalize</button>
             </form>
-            <section className={hidden.classes}>
             <Link to="/CharacterSelect"><button>Choose your Class</button></Link>
-            </section>
         </main>
     )
 }
