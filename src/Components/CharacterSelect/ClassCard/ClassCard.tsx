@@ -7,12 +7,13 @@ import "./ClassCard.css";
 
 interface Props {
     characterClass: CharacterClass;
-    updateUserProfile: (characterClass: CharacterClass) => void;
+
+    index: number;
 }
 
-const ClassCard = ({characterClass, updateUserProfile}: Props) => {
+const ClassCard = ({characterClass, index}: Props) => {
 
-    const {userStats, updateUserStats} = useContext(UserContext);
+    const {userStats, updateUserStats, classList} = useContext(UserContext);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -26,6 +27,9 @@ const ClassCard = ({characterClass, updateUserProfile}: Props) => {
         <main className="ClassCardContainer">
             <form action="submit" onSubmit={handleSubmit}>
             <h4>{characterClass.name}</h4>
+            <section className="ClassImageContainer">
+                <img className="ClassImage" src={classList[index].image} alt={userStats.name} />
+            </section>
             <div>
                 <p>Physical Attack: {characterClass.physAtk}</p>
                 <p>Physical Defense: {characterClass.physDef}</p>
@@ -34,7 +38,9 @@ const ClassCard = ({characterClass, updateUserProfile}: Props) => {
                 <p>Magic Attack: {characterClass.magAtk}</p>
                 <p>Magic Defense: {characterClass.magDef}</p>
             </div>
-            <button>Choose Class</button>
+            <section className="ChooseClassButtonContainer">
+                <button>Choose Class</button>
+            </section>
             </form>
             
         </main>

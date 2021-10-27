@@ -10,6 +10,7 @@ main.DialogueBoxContainer section.DialogueSection {
 
      /* size */
      width: 60%;
+     height: 200px;
  
      /* border */
      border-style: solid;

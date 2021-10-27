@@ -7,7 +7,8 @@ export interface CharacterClass {
         physAtk: number,
         physDef: number,
         magAtk: number,
-        magDef: number
+        magDef: number,
+        image: string
 }
 
 export interface UserStats {
@@ -18,7 +19,8 @@ export interface UserStats {
         physDef: number,
         magAtk: number,
         magDef: number
-        exp?: number
+        exp?: number,
+        image: string
 }
 
 
@@ -36,7 +38,8 @@ export interface MonsterStats {
         physDef: number,
         magAtk: number,
         magDef: number
-        xp: number
+        xp: number,
+        image: string
 }
 
 
