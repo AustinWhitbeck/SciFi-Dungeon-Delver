@@ -2,10 +2,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
+import CharacterPortrait from "../CharacterPortrait/CharacterPortrait";
 import DialogueBox from "../DialogueBox/DialogueBox";
+
+// Images
+import Informant from '../../Images/Informant.jpg';
 
 // CSS import
 import './StoryScreen.css';
+import LinkButton from "../Buttons/LinkButton/LinkButton";
 
 
 const StoryScreen = () => {
@@ -13,7 +18,7 @@ const StoryScreen = () => {
 
     // Imported Contexts
     const {storyChapter, currentChapterDialogue } = useContext(StoryChapterContext);
-    const {assignRandomMonster, updateCurrentMonster, allMonsters} = useContext(MonsterContext);
+    const {assignRandomMonster, updateCurrentMonster, allMonsters, currentMonster} = useContext(MonsterContext);
 
     // count code
 
@@ -21,10 +26,19 @@ const StoryScreen = () => {
     console.log("this is the count on startup", count);
 
     // next screen variable
-    const [nextScreen, setNextScreen] = useState("hidden")
+    const [hidden, setHidden] = useState({
+        nextButton: "",
+        nextScreenLink: "hidden"
+    })
 
     // link variable
     const [linkPath, setLinkPath] = useState("/FightScreen");
+
+    // text variable
+    const [text, setText] = useState({
+        chapter: currentChapterDialogue[0],
+        buttonText: "Go to Fight"
+    })
 
     // reusable functions
 
@@ -46,10 +60,16 @@ const StoryScreen = () => {
         increaseCount();
         
         if(count < currentChapterDialogue.length) {
-            setText(currentChapterDialogue[count]);
+            setText({
+                chapter:currentChapterDialogue[count],
+                buttonText: text.buttonText
+            });
         } else {
-            setNextScreen("");
-            setText("This is the end of the dialogue, begin the fight!");
+            setHidden({nextButton: "hidden", nextScreenLink: ""});
+            setText({
+                chapter: "This is the end of the dialogue, begin the fight!",
+                buttonText: text.buttonText 
+            });
             if (storyChapter == 1){
                 assignRandomMonster();
             } else if (storyChapter == 2){
@@ -58,6 +78,10 @@ const StoryScreen = () => {
                 updateCurrentMonster(allMonsters[3]);
             } else {
                 setLinkPath("/FinalScreen");
+                setText({
+                    chapter: text.chapter,
+                    buttonText: "Claim your reward!"
+                })
             }
         }
         console.log("count after increase", count);
@@ -65,22 +89,27 @@ const StoryScreen = () => {
 
 
 
-    // text variable
-    const [text, setText] = useState(currentChapterDialogue[0])
+    
 
     return(
         <main className="StoryScreenContainer">
             <section>Chapter: {storyChapter}</section>
-            <section>
-                <DialogueBox
-                dialogueText={text}
+                <CharacterPortrait
+                image={Informant}
                 />
+
+                <DialogueBox
+                dialogueText={text.chapter}
+                />
+            <section className={`NextButtonContainer ${hidden.nextButton}`}>
+                    <button className="NextButton"onClick={nextText}>Next</button>
             </section>
-            <section>
-                <button onClick={nextText}>Next</button>
-            </section>
-            <section className={nextScreen}>
-                <Link to={linkPath}><button>Go to fight</button></Link>
+            <section className={`NextButtonContainer ${hidden.nextScreenLink}`}>
+                {/* <Link to={linkPath}><button className="NextButton">{text.buttonText}</button></Link> */}
+                <LinkButton
+                link={linkPath}
+                text={text.buttonText}
+                />
             </section>
         </main>
     )

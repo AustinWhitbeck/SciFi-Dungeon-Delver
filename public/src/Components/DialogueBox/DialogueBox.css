@@ -3,7 +3,13 @@ main.DialogueBoxContainer {
     justify-content: center;
 }
 
-main.DialogueBoxContainer section.DialogueSection {
+.TextContainer {
+
+    /* Flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
      /* box model */
      margin: 30px;
      padding: 10px 15px;
@@ -16,11 +22,10 @@ main.DialogueBoxContainer section.DialogueSection {
      border-style: solid;
      border-color: black;
      border-radius: 10px;
-
-     /* Flex */
-     display: flex;
-     justify-content: center;
  
      /* Color */
      background-color: rgb(228, 228, 228);
+
+     /* text */
+     text-align:left
 }

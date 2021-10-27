@@ -1,21 +1,13 @@
 
-
-main.StoryScreenContainer section.hidden {
-    display: none;
-}
-
-.NextButtonContainer {
+.LinkButtonContainer {
     /* Flex */
     display: flex;
     justify-content: center;
-
-    /* Box Model */
-    margin: 5px;
-    margin-right: 5px;
+    align-items: center;
 }
 
-.NextButton {
 
+.LinkButton {
     /* Box Model */
     margin: 0px;
 

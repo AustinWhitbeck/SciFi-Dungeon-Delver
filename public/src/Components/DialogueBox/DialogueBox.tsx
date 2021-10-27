@@ -11,7 +11,9 @@ const DialogueBox = ({dialogueText}: Props) => {
 
     return(
         <main className="DialogueBoxContainer">
-            <section className="DialogueSection">{dialogueText} </section>
+            <section className="TextContainer">
+                <text className="DialogueSection">{dialogueText} </text>
+            </section>
         </main>
     )
 }

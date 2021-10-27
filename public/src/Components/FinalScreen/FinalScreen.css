@@ -1,0 +1,34 @@
+.FinalMain {
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.FinalScreenContainer {
+    /* Flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    /* Box Model */
+    margin-top: 200px;
+
+    /* Size */
+    width: 60%;
+    height: 300px;
+
+    /* Border */
+    border-style: solid;
+    border-color: rgb(49, 17, 75);
+    border-width: 10px;
+    border-radius: 30px;
+
+    /* color */
+    color: gold;
+    background-color: rgb(96, 164, 219);
+
+
+}

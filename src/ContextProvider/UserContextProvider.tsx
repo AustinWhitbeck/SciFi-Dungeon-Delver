@@ -6,6 +6,7 @@ import { CharacterClass, UserStats } from "../Components/Model/Interfaces";
 import StreetBrawler from '../Images/StreetBrawler.jpg';
 import CyberNinja from '../Images/CyberNinja.jpg';
 import MysticSword from '../Images/MysticSword.jpg';
+import PreSelection from '../Images/PreSelectionCharacter.jpg';
 
 
 interface UserContext  {
@@ -48,7 +49,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         magAtk: 0,
         magDef: 0,
         exp: 0,
-        image: ""
+        image: PreSelection
     })
 
 

@@ -14,6 +14,7 @@ import '../../Images/SpaceGoblin.jpg';
 
 // CSS
 import "./FightScreen.css";
+import LinkButton from "../Buttons/LinkButton/LinkButton";
 
 
 const FightScreen = () => {
@@ -24,7 +25,7 @@ const FightScreen = () => {
     const {nextChapter} = useContext(StoryChapterContext);
 
     // temp text for dialogue box
-    const [dialogueText, setDialogueText] = useState("");
+    const [dialogueText, setDialogueText] = useState(`${currentMonster.monsterName} Looks ready to attack!`);
     
 
     
@@ -159,7 +160,7 @@ const FightScreen = () => {
                     attack={userMagAttack}
                     attackType="Magic Attack"
                     />
-                    <RandomMonsterButton/>
+                    {/* <RandomMonsterButton/> */}
             </section>
             <section className="UserVsPlayerContainer">
                     <ActivePlayer/>
@@ -171,7 +172,12 @@ const FightScreen = () => {
                     />
             </section>
             <section className={hidden.nextChapterMenu}>
-                <Link to="/StoryScreen"><button onClick={nextChapter}>Next Chapter</button></Link>
+                {/* <Link to="/StoryScreen"><button className="" onClick={nextChapter}>Next Chapter</button></Link> */}
+                <LinkButton
+                link="/StoryScreen"
+                onClick={nextChapter}
+                text="Next Chapter"
+                />
             </section>
         </main>
     )

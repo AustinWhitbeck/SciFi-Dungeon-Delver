@@ -21,8 +21,7 @@ import FinalScreen from './Components/FinalScreen/FinalScreen';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="App" >
       <Router>
         <MonsterContextProvider>
         <UserContextProvider>

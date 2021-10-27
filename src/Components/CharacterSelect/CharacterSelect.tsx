@@ -70,22 +70,24 @@ const CharacterSelect = () => {
     return(
         <main className="CharacterSelectContainer">
             <h2>Character Select</h2>
-            <section className="CurrentUserStatsContainer">
-                <section>
-                    <h3>{userStats.userName}'s Stats</h3>
-                    <ul>
-                        <li>Class Name: {userStats.name}</li>
-                        <li>Health: {userStats.health}</li>
-                        <li>Magic Attack: {userStats.magAtk}</li>
-                        <li>Magic Defense: {userStats.magDef}</li>
-                        <li>Physical Attack: {userStats.physAtk}</li>
-                        <li>Physical Defense: {userStats.physDef}</li>
-                    </ul>
+            <div className="UserStatsSpacing">
+                <section className="CurrentUserStatsContainer">
+                    <section>
+                        <h3>{userStats.userName}'s Stats</h3>
+                        <ul>
+                            <li>Class Name: {userStats.name}</li>
+                            <li>Health: {userStats.health}</li>
+                            <li>Magic Attack: {userStats.magAtk}</li>
+                            <li>Magic Defense: {userStats.magDef}</li>
+                            <li>Physical Attack: {userStats.physAtk}</li>
+                            <li>Physical Defense: {userStats.physDef}</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img className="UserImage"src={userStats.image} alt="UserCharacter" />
+                    </section>
                 </section>
-                <section>
-                    <img className="UserImage"src={userStats.image} alt="" />
-                </section>
-            </section>
+            </div>
             <h2>Class Options</h2>
             <section className="ClassOptionsContainer">
             {classList.map((characterClass, index) => 

@@ -19,7 +19,10 @@ main.CharacterSelectContainer section.ClassOptionsContainer {
 main.CharacterSelectContainer section.CurrentUserStatsContainer {
 
     /* Size */
+    width: 80%;
 
+    /* Box Model */
+    padding: 10px;
 
 
     /* Flex */
@@ -31,11 +34,20 @@ main.CharacterSelectContainer section.CurrentUserStatsContainer {
     border-style: solid;
     border-color: black;
     border-width: 5px;
+    border-radius: 10px;
+
+    /* Color */
+    background-color: rgb(228, 228, 228);
 }
 
 
 main.CharacterSelectContainer section.hidden {
     display: none;
+}
+
+.UserStatsSpacing {
+    display: flex;
+    justify-content: center;
 }
 
 .ChapterOneStart {

@@ -9,6 +9,8 @@ const LoginScreen = () => {
 
     return(
         <main className="LoginScreenContainer">
+
+            <h2 className="LoginTitle"> Vigilante for Hire</h2>
             <SignIn/>
         </main>
     )

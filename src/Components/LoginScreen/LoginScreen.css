@@ -4,3 +4,8 @@ main.LoginScreenContainer {
     justify-content: center;
     align-items: center;
 }
+
+.LoginTitle {
+    font-size: 100px;
+    color: rgb(147, 215, 241);
+}

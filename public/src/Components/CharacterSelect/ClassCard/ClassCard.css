@@ -21,14 +21,14 @@ main.ClassCardContainer {
     background-color: rgb(228, 228, 228);
 }
 
-.ClassImageContainer {
-    width: 200px;
-    height: 250px;
-}
+
 
 .ClassImage {
     width: 200px;
     height: 250px;
+
+    /* border */
+    border-radius: 10px;
 }
 
 

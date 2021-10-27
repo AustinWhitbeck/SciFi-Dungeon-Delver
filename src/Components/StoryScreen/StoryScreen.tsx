@@ -10,6 +10,7 @@ import Informant from '../../Images/Informant.jpg';
 
 // CSS import
 import './StoryScreen.css';
+import LinkButton from "../Buttons/LinkButton/LinkButton";
 
 
 const StoryScreen = () => {
@@ -104,7 +105,11 @@ const StoryScreen = () => {
                     <button className="NextButton"onClick={nextText}>Next</button>
             </section>
             <section className={`NextButtonContainer ${hidden.nextScreenLink}`}>
-                <Link to={linkPath}><button className="NextButton">{text.buttonText}</button></Link>
+                {/* <Link to={linkPath}><button className="NextButton">{text.buttonText}</button></Link> */}
+                <LinkButton
+                link={linkPath}
+                text={text.buttonText}
+                />
             </section>
         </main>
     )

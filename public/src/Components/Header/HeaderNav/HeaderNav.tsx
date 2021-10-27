@@ -19,8 +19,8 @@ const HeaderNav = () => {
                 <li>inventory</li>
                 <li>logout</li> */}
                 <span>Current Chapter: {storyChapter}</span>
-                <Link to="/"><button>Home</button></Link>
-                <Link to="/FightScreen"><button>Fight Screen</button></Link>
+                {/* <Link to="/"><button>Home</button></Link>
+                <Link to="/FightScreen"><button>Fight Screen</button></Link> */}
             </ul>
         </nav>
     )
