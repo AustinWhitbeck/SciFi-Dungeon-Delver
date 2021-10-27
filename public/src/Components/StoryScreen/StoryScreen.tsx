@@ -78,8 +78,6 @@ const StoryScreen = () => {
             </section>
             <section>
                 <button onClick={nextText}>Next</button>
-                <span>{count}</span>
-                <button onClick={increaseCount}>Increase count</button>
             </section>
             <section className={nextScreen}>
                 <Link to={linkPath}><button>Go to fight</button></Link>

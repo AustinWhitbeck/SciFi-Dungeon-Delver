@@ -24,7 +24,7 @@ const FightScreen = () => {
     const {nextChapter} = useContext(StoryChapterContext);
 
     // temp text for dialogue box
-    const [dialogueText, setDialogueText] = useState("");
+    const [dialogueText, setDialogueText] = useState(`${currentMonster.monsterName} Looks ready to attack!`);
     
 
     

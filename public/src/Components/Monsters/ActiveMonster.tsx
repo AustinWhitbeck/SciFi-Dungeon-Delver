@@ -2,6 +2,10 @@ import { useContext } from "react";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 
 
+// CSS
+import "./ActiveMonster.css";
+
+
 const ActiveMonster = () => {
 
     // Current Monster 
@@ -10,8 +14,10 @@ const ActiveMonster = () => {
     return(
         <main>
             <section>
-                <h3>A wild {currentMonster.monsterName}</h3>
-                <div className="monsterImage"></div>
+                <h3>{currentMonster.monsterName}</h3>
+                <div className="monsterImageContainer">
+                    <img className="MonsterImage" src={currentMonster.image} alt={currentMonster.monsterName} />
+                </div>
                 <section>Health: {currentMonster.health}</section>
                     <ul>
                         <li>Magic Attack: {currentMonster.magAtk}</li>

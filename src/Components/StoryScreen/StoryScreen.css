@@ -3,3 +3,26 @@
 main.StoryScreenContainer section.hidden {
     display: none;
 }
+
+.NextButtonContainer {
+    /* Flex */
+    display: flex;
+    justify-content: center;
+
+    /* Box Model */
+    margin: 5px;
+    margin-right: 5px;
+}
+
+.NextButton {
+
+    /* Box Model */
+    margin: 0px;
+
+    /* Sizing */
+    width: 200px;
+    height: 50px;
+    
+    /* Border */
+    border-radius: 10px;
+}

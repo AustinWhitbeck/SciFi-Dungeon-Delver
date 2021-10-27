@@ -4,3 +4,12 @@ main.SignInContainer {
     padding: 20px;
     background-color: white;
 }
+
+
+main.SignInContainer section.hidden {
+ display: none
+}
+
+main.SignInContainer button.hidden {
+    display: none
+}

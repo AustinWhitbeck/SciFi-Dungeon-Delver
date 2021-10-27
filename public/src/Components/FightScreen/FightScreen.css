@@ -6,11 +6,18 @@ main.FightScreenContainer {
     justify-content: center;
 }
 
+/*  Sub Containers */
 
 main.FightScreenContainer section.UserVsPlayerContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+main.FightScreenContainer section.UserAbilityButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 

@@ -4,9 +4,13 @@ import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvide
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import ActivePlayer from "../ActivePlayer/ActivePlayer";
+import AttackButton from "../Buttons/AttackButton/AttackButton";
 import RandomMonsterButton from "../Buttons/RandomMonsterButton/RandomMonsterButton";
 import DialogueBox from "../DialogueBox/DialogueBox";
 import ActiveMonster from "../Monsters/ActiveMonster";
+
+// Monster Images
+import '../../Images/SpaceGoblin.jpg';
 
 // CSS
 import "./FightScreen.css";
@@ -17,10 +21,10 @@ const FightScreen = () => {
     // context providers
     const {userStats} = useContext(UserContext);
     const {currentMonster, updateCurrentMonster} = useContext(MonsterContext);
-    const {storyChapter, nextChapter} = useContext(StoryChapterContext);
+    const {nextChapter} = useContext(StoryChapterContext);
 
     // temp text for dialogue box
-    const [dialogueText, setDialogueText] = useState("test text");
+    const [dialogueText, setDialogueText] = useState("");
     
 
     
@@ -57,6 +61,9 @@ const FightScreen = () => {
             console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
         } 
     }
+        
+        // Physical Damage 
+        // NOTE/TODO: could potentially make these arguments of attacker and defender as reuseable code for the monster attacking back.
 
     const damageComparisonUserPhys = () => {
         let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
@@ -75,6 +82,8 @@ const FightScreen = () => {
         }
 
     }
+
+        // Magic Attack
 
     const damageComparisonUserMag = () => {
         let damage = (userStats.magAtk + randomisedDamage2()) - currentMonster.magDef;
@@ -109,7 +118,8 @@ const FightScreen = () => {
             physDef: currentMonster.physDef,
             magAtk: currentMonster.magAtk,
             magDef: currentMonster.magDef,
-            xp: currentMonster.xp
+            xp: currentMonster.xp,
+            image: currentMonster.image
         })
         console.log(currentMonster);
     }
@@ -125,7 +135,8 @@ const FightScreen = () => {
             physDef: currentMonster.physDef,
             magAtk: currentMonster.magAtk,
             magDef: currentMonster.magDef,
-            xp: currentMonster.xp
+            xp: currentMonster.xp,
+            image: currentMonster.image
         })
         console.log(currentMonster);
     }
@@ -140,8 +151,14 @@ const FightScreen = () => {
     return(
         <main className="FightScreenContainer">
             <section className={`UserAbilityButtons ${hidden.attackMenu}`}>
-                    <button onClick={userPhysAttack}>Physical Attack</button>
-                    <button onClick={userMagAttack}>Magic Attack</button>
+                    <AttackButton
+                    attack={userPhysAttack}
+                    attackType="Physical Attack"
+                    />
+                    <AttackButton
+                    attack={userMagAttack}
+                    attackType="Magic Attack"
+                    />
                     <RandomMonsterButton/>
             </section>
             <section className="UserVsPlayerContainer">

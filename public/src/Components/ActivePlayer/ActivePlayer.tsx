@@ -13,7 +13,10 @@ const ActivePlayer = () => {
     return(
         <main className="ActivePlayerContainer">
             <h3>Player: {userStats.userName}</h3>
-            <div className="UserImage"></div>
+            <section> 
+                <img className="UserImage" src={userStats.image} alt={userStats.name} />
+            </section>
+            <section>
                 <ul>
                     <li>Class Name: {userStats.name}</li>
                     <li>Magic Attack: {userStats.magAtk}</li>
@@ -21,6 +24,7 @@ const ActivePlayer = () => {
                     <li>Physical Attack: {userStats.physAtk}</li>
                     <li>Physical Defense: {userStats.physDef}</li>
                 </ul>
+            </section>
         </main>
     )
 }

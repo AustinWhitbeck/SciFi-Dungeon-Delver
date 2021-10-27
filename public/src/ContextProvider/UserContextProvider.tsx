@@ -1,11 +1,18 @@
 import React, { ReactNode, useState, useContext } from "react";
-import { UserStats } from "../Components/Model/Interfaces";
+import { CharacterClass, UserStats } from "../Components/Model/Interfaces";
+
+
+// Character Class Images
+import StreetBrawler from '../Images/StreetBrawler.jpg';
+import CyberNinja from '../Images/CyberNinja.jpg';
+import MysticSword from '../Images/MysticSword.jpg';
 
 
 interface UserContext  {
     userStats: UserStats,
     updateUserStats: (stats: UserStats) => void,
     updateUserName: (newName: string) => void,
+    classList: CharacterClass[]
 }
 
 const defaultUserValue: UserContext = {
@@ -17,10 +24,13 @@ const defaultUserValue: UserContext = {
         physDef: 0,
         magAtk: 0,
         magDef: 0,
-        exp: 0
+        exp: 0,
+        image: ""
     },
     updateUserStats: (stats: UserStats) => {},
-    updateUserName: (newName: string) => {}
+    updateUserName: (newName: string) => {},
+    classList: []
+
 }
 
 
@@ -37,8 +47,44 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         physDef: 0,
         magAtk: 0,
         magDef: 0,
-        exp: 0
+        exp: 0,
+        image: ""
     })
+
+
+    const classList: CharacterClass[] = [
+        {
+            index: 1,
+            name: "Street Brawler",
+            health: 14,
+            physAtk: 5,
+            physDef: 2,
+            magAtk: 0,
+            magDef: 1,
+            image: StreetBrawler
+        },
+        {
+            index: 2,
+            name: "Cyber Ninja",
+            health: 8,
+            physAtk: 4,
+            physDef: 1,
+            magAtk: 1,
+            magDef: 2,
+            image: CyberNinja
+        },
+        {
+            index: 3,
+            name: "Mystic Sword",
+            health: 10,
+            physAtk: 2,
+            physDef: 1,
+            magAtk: 3,
+            magDef: 2,
+            image: MysticSword
+        },
+
+    ]
 
     const updateUserStats = (stats: UserStats) => {
         setUserStats({
@@ -49,7 +95,8 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             physDef: stats.physDef,
             magAtk: stats.magAtk,
             magDef: stats.magDef,
-            exp: userStats.exp
+            exp: userStats.exp,
+            image: stats.image
         });
     }
 
@@ -62,12 +109,13 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             physDef: userStats.physDef,
             magAtk: userStats.magAtk,
             magDef: userStats.magDef,
-            exp: userStats.exp
+            exp: userStats.exp,
+            image: userStats.image
         })
     }
 
     return (
-        <UserContext.Provider value={{userStats, updateUserStats, updateUserName}}>
+        <UserContext.Provider value={{userStats, updateUserStats, updateUserName, classList}}>
             {children}
         </UserContext.Provider>
     )

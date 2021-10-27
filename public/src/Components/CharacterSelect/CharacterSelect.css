@@ -32,3 +32,20 @@ main.CharacterSelectContainer section.CurrentUserStatsContainer {
 main.CharacterSelectContainer section.hidden {
     display: none;
 }
+
+.ChapterOneStart {
+    display: flex;
+    justify-content: center;
+}
+
+.ToChapterButton {
+    /* size */
+    width: 300px;
+    height: 80px;
+
+    /* Box Model */
+    margin: 5px;
+
+    /* border */
+    border-radius: 10px;
+}

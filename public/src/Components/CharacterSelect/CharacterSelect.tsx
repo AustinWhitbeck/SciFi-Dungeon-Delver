@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import BackButton from "../Buttons/BackButton/BackButton";
 import { CharacterClass } from "../Model/Interfaces";
@@ -14,41 +14,44 @@ const CharacterSelect = () => {
 
     // Imported Current User profile, use to update with options
 
-    const {userStats, updateUserStats} = useContext(UserContext);
+    const {userStats, updateUserStats, classList} = useContext(UserContext);
 
 
     // Temporary Character Class List
 
-    const classList: CharacterClass[] = [
-        {
-            index: 1,
-            name: "Street Brawler",
-            health: 14,
-            physAtk: 5,
-            physDef: 2,
-            magAtk: 0,
-            magDef: 1
-        },
-        {
-            index: 2,
-            name: "Cyber Ninja",
-            health: 8,
-            physAtk: 4,
-            physDef: 1,
-            magAtk: 1,
-            magDef: 2
-        },
-        {
-            index: 3,
-            name: "Mystic Sword",
-            health: 10,
-            physAtk: 2,
-            physDef: 1,
-            magAtk: 3,
-            magDef: 2
-        },
+    // const classList: CharacterClass[] = [
+    //     {
+    //         index: 1,
+    //         name: "Street Brawler",
+    //         health: 14,
+    //         physAtk: 5,
+    //         physDef: 2,
+    //         magAtk: 0,
+    //         magDef: 1,
+    //         image: ""
+    //     },
+    //     {
+    //         index: 2,
+    //         name: "Cyber Ninja",
+    //         health: 8,
+    //         physAtk: 4,
+    //         physDef: 1,
+    //         magAtk: 1,
+    //         magDef: 2,
+    //         image: ""
+    //     },
+    //     {
+    //         index: 3,
+    //         name: "Mystic Sword",
+    //         health: 10,
+    //         physAtk: 2,
+    //         physDef: 1,
+    //         magAtk: 3,
+    //         magDef: 2,
+    //         image: ""
+    //     },
 
-    ]
+    // ]
 
     // variable for going to chapter 1 if class is selected
     let startAdventure = "hidden";
@@ -84,12 +87,12 @@ const CharacterSelect = () => {
                 <ClassCard
                     key={`${characterClass.name}-${index}`}
                     characterClass={characterClass}
-                    updateUserProfile={ (characterClass) => updateUserStats(characterClass)}
+                    index={index}
                 />
             )}
             </section>
             <section className={`ChapterOneStart ${startAdventure}`}>
-                <Link to="/StoryScreen"><button>Go to chapter</button></Link>
+                <Link to="/StoryScreen"><button className="ToChapterButton">Go to chapter</button></Link>
             </section>
             
             <BackButton/>
