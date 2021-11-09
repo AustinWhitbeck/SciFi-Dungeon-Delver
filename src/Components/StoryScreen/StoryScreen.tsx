@@ -11,6 +11,7 @@ import Informant from '../../Images/Informant.jpg';
 // CSS import
 import './StoryScreen.css';
 import LinkButton from "../Buttons/LinkButton/LinkButton";
+import { UserContext } from "../../ContextProvider/UserContextProvider";
 
 
 const StoryScreen = () => {
@@ -18,7 +19,8 @@ const StoryScreen = () => {
 
     // Imported Contexts
     const {storyChapter, currentChapterDialogue } = useContext(StoryChapterContext);
-    const {assignRandomMonster, updateCurrentMonster, allMonsters, currentMonster} = useContext(MonsterContext);
+    const {assignRandomMonster, updateCurrentMonster, allMonsters } = useContext(MonsterContext);
+    const { resetHealth, userStats } = useContext(UserContext);
 
     // count code
 
@@ -52,6 +54,7 @@ const StoryScreen = () => {
 
     }
 
+
     // On click to progress to next dialogue.
         // NOTE: this also assigns the monster to the fight screen before the user gets to it.
         // IE - on storyChapter1, it randomzies an enemy.
@@ -70,6 +73,10 @@ const StoryScreen = () => {
                 chapter: "This is the end of the dialogue, begin the fight!",
                 buttonText: text.buttonText 
             });
+            console.log("before health reset",userStats)
+            resetHealth();
+            console.log("after health reset", userStats)
+
             if (storyChapter == 1){
                 assignRandomMonster();
             } else if (storyChapter == 2){

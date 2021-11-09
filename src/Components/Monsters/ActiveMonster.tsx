@@ -18,7 +18,7 @@ const ActiveMonster = () => {
                 <div className="monsterImageContainer">
                     <img className="MonsterImage" src={currentMonster.image} alt={currentMonster.monsterName} />
                 </div>
-                <section>Health: {currentMonster.health}</section>
+                <section>Health: {currentMonster.currentHealth}</section>
                     <ul>
                         <li>Magic Attack: {currentMonster.magAtk}</li>
                         <li>Magic Defense: {currentMonster.magDef}</li>

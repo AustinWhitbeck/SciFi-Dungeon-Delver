@@ -4,6 +4,7 @@ export interface CharacterClass {
         index: number,
         name: string,
         health: number,
+        currentHealth: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
@@ -15,6 +16,7 @@ export interface UserStats {
         userName?: string | undefined,
         name?: string,
         health: number,
+        currentHealth: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
@@ -34,6 +36,7 @@ export interface UserProfile {
 export interface MonsterStats {
         monsterName?: string,
         health: number,
+        currentHealth: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
