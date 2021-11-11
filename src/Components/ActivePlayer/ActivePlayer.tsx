@@ -10,6 +10,12 @@ const ActivePlayer = () => {
 
     const {userStats } = useContext(UserContext);
 
+    if(!userStats){
+        return(
+            null
+        )
+    } else {
+
     return(
         <main className="ActivePlayerContainer">
             <h3>Player: {userStats.userName}</h3>
@@ -27,6 +33,7 @@ const ActivePlayer = () => {
             </section>
         </main>
     )
+    }
 }
 
 export default ActivePlayer;

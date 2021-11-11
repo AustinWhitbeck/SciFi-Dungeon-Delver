@@ -50,7 +50,7 @@ const FightScreen = () => {
 
     //  EXPERIMENTAL REUSABLE DAMAGE COMPARISON
 
-    // let damageComparison = ()
+    // let damageComparison = (attack, defender, attackerDamage, defenderDef);npm st
 
         // User Damage
 
@@ -69,31 +69,35 @@ const FightScreen = () => {
         // NOTE/TODO: could potentially make these arguments of attacker and defender as reuseable code for the monster attacking back.
 
     const damageComparisonUserPhys = () => {
-        let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
-        console.log("user attack and randomized damage", damage);
-        console.log(dialogueText);
+        if(userStats?.physAtk){
+            let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
+            console.log("user attack and randomized damage", damage);
+            console.log(dialogueText);
 
-        damageComparisonUser(damage);
+            damageComparisonUser(damage);
 
-        if (currentMonster.currentHealth > 0){
-        setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
-        console.log(dialogueText);
-        } else {
-            setHidden({attackMenu: "hidden", nextChapterMenu: ""});
-            setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
-        console.log(dialogueText);
+            if (currentMonster.currentHealth > 0){
+            setDialogueText(`${userStats?.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
+            console.log(dialogueText);
+            } else {
+                setHidden({attackMenu: "hidden", nextChapterMenu: ""});
+                setDialogueText(`${userStats?.userName} destroyed a ${currentMonster.monsterName}!`);
+            console.log(dialogueText);
+            }
         }
-
     }
 
         // Magic Attack
 
     const damageComparisonUserMag = () => {
+        if(userStats?.magAtk){
         let damage = (userStats.magAtk + randomisedDamage2()) - currentMonster.magDef;
         console.log("user attack and randomized damage", damage);
         console.log(dialogueText);
+        
 
         damageComparisonUser(damage);
+        
 
 
         if (currentMonster.currentHealth > 0){
@@ -104,7 +108,9 @@ const FightScreen = () => {
                 setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             }
-
+        } else {
+            console.log("No User Stats to calculate");
+        }
     }
     
     // User Attacks

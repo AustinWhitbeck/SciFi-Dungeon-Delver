@@ -14,15 +14,15 @@ export interface CharacterClass {
 
 export interface UserStats {
         userName?: string | undefined,
-        name?: string,
-        health: number,
-        currentHealth: number,
-        physAtk: number,
-        physDef: number,
-        magAtk: number,
-        magDef: number
+        name?: string | undefined,
+        health: number | undefined,
+        currentHealth: number | undefined,
+        physAtk: number | undefined,
+        physDef: number | undefined,
+        magAtk: number | undefined,
+        magDef: number | undefined,
         exp?: number,
-        image: string
+        image: string | undefined
 }
 
 

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useContext } from "react";
+import React, { ReactNode, useState } from "react";
 import { CharacterClass, UserStats } from "../Components/Model/Interfaces";
 
 
@@ -6,12 +6,12 @@ import { CharacterClass, UserStats } from "../Components/Model/Interfaces";
 import StreetBrawler from '../Images/StreetBrawler.jpg';
 import CyberNinja from '../Images/CyberNinja.jpg';
 import MysticSword from '../Images/MysticSword.jpg';
-import PreSelection from '../Images/PreSelectionCharacter.jpg';
+
 
 
 
 interface UserContext  {
-    userStats: UserStats,
+    userStats: UserStats | undefined,
     updateUserStats: (stats: UserStats) => void,
     updateUserName: (newName: string) => void,
     resetHealth: () => void,
@@ -44,17 +44,17 @@ export const UserContext = React.createContext(defaultUserValue);
 
 export const UserContextProvider = ({children}: {children: ReactNode}) => {
 
-    const [userStats, setUserStats] = useState<UserStats>({
-        userName: "",
-        name: "",
-        health: 0,
-        currentHealth: 0,
-        physAtk: 0,
-        physDef: 0,
-        magAtk: 0,
-        magDef: 0,
-        exp: 0,
-        image: PreSelection
+    const [userStats, setUserStats] = useState<UserStats | undefined>({
+        userName: undefined,
+        name: undefined,
+        health: undefined,
+        currentHealth: undefined,
+        physAtk: undefined,
+        physDef: undefined,
+        magAtk: undefined,
+        magDef: undefined,
+        exp: undefined,
+        image: undefined
     })
 
 
@@ -96,48 +96,54 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
     ]
 
     const resetHealth = () => {
-        setUserStats({
-            userName: userStats.userName,
-            name: userStats.name,
-            health: userStats.health,
-            currentHealth: userStats.health,
-            physAtk: userStats.physAtk,
-            physDef: userStats.physDef,
-            magAtk: userStats.magAtk,
-            magDef: userStats.magDef,
-            exp: userStats.exp,
-            image: userStats.image
-        });
+        if(userStats){
+            setUserStats({
+                userName: userStats.userName,
+                name: userStats.name,
+                health: userStats.health,
+                currentHealth: userStats.health,
+                physAtk: userStats.physAtk,
+                physDef: userStats.physDef,
+                magAtk: userStats.magAtk,
+                magDef: userStats.magDef,
+                exp: userStats.exp,
+                image: userStats.image
+            });
+        }
     }
 
     const updateUserStats = (stats: UserStats) => {
-        setUserStats({
-            userName: userStats.userName,
-            name: stats.name,
-            health: stats.health,
-            currentHealth: stats.currentHealth,
-            physAtk: stats.physAtk,
-            physDef: stats.physDef,
-            magAtk: stats.magAtk,
-            magDef: stats.magDef,
-            exp: userStats.exp,
-            image: stats.image
-        });
+        if(userStats){
+            setUserStats({
+                userName: userStats.userName,
+                name: stats.name,
+                health: stats.health,
+                currentHealth: stats.currentHealth,
+                physAtk: stats.physAtk,
+                physDef: stats.physDef,
+                magAtk: stats.magAtk,
+                magDef: stats.magDef,
+                exp: userStats.exp,
+                image: stats.image
+            });
+        }
     }
 
     const updateUserName = (newName: string) => {
-        setUserStats({
-            userName: newName,
-            name: userStats.name,
-            health: userStats.health,
-            currentHealth: userStats.currentHealth,
-            physAtk: userStats.physAtk,
-            physDef: userStats.physDef,
-            magAtk: userStats.magAtk,
-            magDef: userStats.magDef,
-            exp: userStats.exp,
-            image: userStats.image
-        })
+        if(userStats){
+            setUserStats({
+                userName: newName,
+                name: userStats.name,
+                health: userStats.health,
+                currentHealth: userStats.currentHealth,
+                physAtk: userStats.physAtk,
+                physDef: userStats.physDef,
+                magAtk: userStats.magAtk,
+                magDef: userStats.magDef,
+                exp: userStats.exp,
+                image: userStats.image
+            })
+        }
     }
 
     return (
