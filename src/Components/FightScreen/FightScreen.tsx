@@ -20,7 +20,7 @@ import LinkButton from "../Buttons/LinkButton/LinkButton";
 const FightScreen = () => {
 
     // context providers
-    const {userStats} = useContext(UserContext);
+    const { userStats, updateUserStats } = useContext(UserContext);
     const {currentMonster, updateCurrentMonster} = useContext(MonsterContext);
     const {nextChapter} = useContext(StoryChapterContext);
 
@@ -32,7 +32,8 @@ const FightScreen = () => {
    
 
     // Variables for this page
-    let damagedHealth: number = 0;
+    let userDamagedHealth: number = 0;
+    let monsterDamagedHealth: number = 0;
     const [hidden, setHidden] = useState({
         attackMenu: "",
         nextChapterMenu: "hidden"
@@ -54,29 +55,46 @@ const FightScreen = () => {
 
     let damageComparisonUser = (damage: number) => {
         if (damage <= 0) {
-            damagedHealth = currentMonster.health;
+            monsterDamagedHealth = currentMonster.currentHealth;
             console.log("you did none, or negative damage")
         }
-        else if ((currentMonster.health - damage) > 0){
-            damagedHealth = currentMonster.health - damage;
-            console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
+        else if ((currentMonster.currentHealth - damage) > 0){
+            monsterDamagedHealth = currentMonster.currentHealth - damage;
+            console.log(currentMonster.currentHealth, "this is post damage and not dropping to 0 (physical)")
         } 
     }
-        
+
+        // Monster Damage ( this can be combined but for current purposes, doing it this way. Combined with user)
+    
+    let damageComparisonMonster = (damage: number) => {
+        if (damage <= 0) {
+            userDamagedHealth = userStats.currentHealth;
+            console.log("you did none, or negative damage")
+        }
+        else if ((userStats.currentHealth - damage) > 0){
+            userDamagedHealth = userStats.currentHealth - damage;
+            console.log(userStats.currentHealth, "this is post damage and not dropping to 0 (physical)")
+        } 
+    }
         // Physical Damage 
         // NOTE/TODO: could potentially make these arguments of attacker and defender as reuseable code for the monster attacking back.
 
     const damageComparisonUserPhys = () => {
-        if(userStats?.physAtk){
             let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
             console.log("user attack and randomized damage", damage);
             console.log(dialogueText);
+            let monsterDamage = (currentMonster.physAtk + randomisedDamage2()) - userStats.physDef;
 
             damageComparisonUser(damage);
+            damageComparisonMonster(monsterDamage);
 
-        if (currentMonster.health > 0){
-        setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
+        if (currentMonster.currentHealth > 0 && userStats.currentHealth > 0){
+        setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName} and 
+                        ${currentMonster.monsterName} attacked back for ${monsterDamage}!`);
         console.log(dialogueText);
+        } else if (userStats.currentHealth == 0){
+            setDialogueText(`${currentMonster.monsterName} has slain ${userStats.userName}.`);
+            setHidden({attackMenu: "hidden", nextChapterMenu: hidden.nextChapterMenu});
         } else {
             setHidden({attackMenu: "hidden", nextChapterMenu: ""});
             setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
@@ -85,9 +103,7 @@ const FightScreen = () => {
     }
 
         // Magic Attack
-
     const damageComparisonUserMag = () => {
-        if(userStats?.magAtk){
         let damage = (userStats.magAtk + randomisedDamage2()) - currentMonster.magDef;
         console.log("user attack and randomized damage", damage);
         console.log(dialogueText);
@@ -97,7 +113,7 @@ const FightScreen = () => {
         
 
 
-        if (currentMonster.health > 0){
+        if (currentMonster.currentHealth > 0){
             setDialogueText(`${userStats.userName} did ${damage} magic damage to the ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             } else {
@@ -105,9 +121,7 @@ const FightScreen = () => {
                 setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             }
-        } else {
-            console.log("No User Stats to calculate");
-        }
+        
     }
     
     // User Attacks
@@ -120,7 +134,7 @@ const FightScreen = () => {
         updateCurrentMonster({
             monsterName: currentMonster.monsterName,
             health: currentMonster.health,
-            currentHealth: damagedHealth,
+            currentHealth: monsterDamagedHealth,
             physAtk: currentMonster.physAtk,
             physDef: currentMonster.physDef,
             magAtk: currentMonster.magAtk,
@@ -129,6 +143,18 @@ const FightScreen = () => {
             image: currentMonster.image
         })
         console.log(currentMonster);
+        updateUserStats({
+            userName: userStats.userName,
+            name: userStats.name,
+            health: userStats.health,
+            currentHealth: userDamagedHealth,
+            physAtk: userStats.physAtk,
+            physDef: userStats.physDef,
+            magAtk: userStats.magAtk,
+            magDef: userStats.magDef,
+            exp: userStats.exp,
+            image: userStats.image
+        })
     }
 
     const userMagAttack = () => {
@@ -138,7 +164,7 @@ const FightScreen = () => {
         updateCurrentMonster({
             monsterName: currentMonster.monsterName,
             health: currentMonster.health,
-            currentHealth: damagedHealth,
+            currentHealth: monsterDamagedHealth,
             physAtk: currentMonster.physAtk,
             physDef: currentMonster.physDef,
             magAtk: currentMonster.magAtk,
@@ -151,6 +177,8 @@ const FightScreen = () => {
 
 
     // Monster attack
+
+
     
 
  
@@ -188,7 +216,7 @@ const FightScreen = () => {
             </section>
         </main>
     )
-}
+    
 }
 
 export default FightScreen;

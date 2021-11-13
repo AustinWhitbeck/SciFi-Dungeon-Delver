@@ -10,15 +10,11 @@ const ActivePlayer = () => {
 
     const {userStats } = useContext(UserContext);
 
-    if(!userStats){
-        return(
-            null
-        )
-    } else {
 
     return(
         <main className="ActivePlayerContainer">
             <h3>Player: {userStats.userName}</h3>
+            <p> Health: {userStats.currentHealth} / {userStats.health} </p>
             <section> 
                 <img className="UserImage" src={userStats.image} alt={userStats.name} />
             </section>
@@ -33,7 +29,7 @@ const ActivePlayer = () => {
             </section>
         </main>
     )
-    }
+
 }
 
 export default ActivePlayer;

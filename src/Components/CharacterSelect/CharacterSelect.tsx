@@ -17,41 +17,6 @@ const CharacterSelect = () => {
     const {userStats, updateUserStats, classList} = useContext(UserContext);
 
 
-    // Temporary Character Class List
-
-    // const classList: CharacterClass[] = [
-    //     {
-    //         index: 1,
-    //         name: "Street Brawler",
-    //         health: 14,
-    //         physAtk: 5,
-    //         physDef: 2,
-    //         magAtk: 0,
-    //         magDef: 1,
-    //         image: ""
-    //     },
-    //     {
-    //         index: 2,
-    //         name: "Cyber Ninja",
-    //         health: 8,
-    //         physAtk: 4,
-    //         physDef: 1,
-    //         magAtk: 1,
-    //         magDef: 2,
-    //         image: ""
-    //     },
-    //     {
-    //         index: 3,
-    //         name: "Mystic Sword",
-    //         health: 10,
-    //         physAtk: 2,
-    //         physDef: 1,
-    //         magAtk: 3,
-    //         magDef: 2,
-    //         image: ""
-    //     },
-
-    // ]
 
     // variable for going to chapter 1 if class is selected
     let startAdventure = "hidden";
@@ -64,12 +29,6 @@ const CharacterSelect = () => {
 
     // Function to update user profile to the selected choice
 
-
-    if(!userStats){
-        return(
-            null
-        )
-    } else {
 
         return(
             <main className="CharacterSelectContainer">
@@ -110,7 +69,7 @@ const CharacterSelect = () => {
                 
             </main>
         )
-    }
+    
 }
 
 export default CharacterSelect;

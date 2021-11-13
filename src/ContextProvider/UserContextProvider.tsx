@@ -14,6 +14,7 @@ interface UserContext  {
     userStats: UserStats,
     updateUserStats: (stats: UserStats) => void,
     updateUserName: (newName: string) => void,
+    resetHealth: () => void,
     classList: CharacterClass[]
 }
 
@@ -32,6 +33,7 @@ const defaultUserValue: UserContext = {
     },
     updateUserStats: (stats: UserStats) => {},
     updateUserName: (newName: string) => {},
+    resetHealth: () => {},
     classList: []
 
 }
@@ -60,7 +62,8 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         {
             index: 1,
             name: "Street Brawler",
-            health: 14,
+            health: 25,
+            currentHealth: 25,
             physAtk: 5,
             physDef: 2,
             magAtk: 0,
@@ -70,7 +73,8 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         {
             index: 2,
             name: "Cyber Ninja",
-            health: 8,
+            health: 18,
+            currentHealth: 18,
             physAtk: 4,
             physDef: 1,
             magAtk: 1,
@@ -80,7 +84,8 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         {
             index: 3,
             name: "Mystic Sword",
-            health: 10,
+            health: 20,
+            currentHealth: 20,
             physAtk: 2,
             physDef: 1,
             magAtk: 3,
@@ -91,7 +96,6 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
     ]
 
     const resetHealth = () => {
-        if(userStats){
             setUserStats({
                 userName: userStats.userName,
                 name: userStats.name,
@@ -104,7 +108,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
                 exp: userStats.exp,
                 image: userStats.image
             });
-        }
+        
     }
 
     const updateUserStats = (stats: UserStats) => {
@@ -142,7 +146,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
     }
 
     return (
-        <UserContext.Provider value={{userStats, updateUserStats, updateUserName, classList}}>
+        <UserContext.Provider value={{userStats, updateUserStats, updateUserName, resetHealth, classList}}>
             {children}
         </UserContext.Provider>
     )

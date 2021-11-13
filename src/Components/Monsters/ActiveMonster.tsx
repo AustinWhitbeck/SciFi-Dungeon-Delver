@@ -15,6 +15,7 @@ const ActiveMonster = () => {
         <main>
             <section>
                 <h3>{currentMonster.monsterName}</h3>
+                <p> Health: {currentMonster.currentHealth} / {currentMonster.health} </p>
                 <div className="monsterImageContainer">
                     <img className="MonsterImage" src={currentMonster.image} alt={currentMonster.monsterName} />
                 </div>

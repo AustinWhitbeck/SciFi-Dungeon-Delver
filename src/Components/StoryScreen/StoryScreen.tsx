@@ -11,6 +11,7 @@ import Informant from '../../Images/Informant.jpg';
 // CSS import
 import './StoryScreen.css';
 import LinkButton from "../Buttons/LinkButton/LinkButton";
+import { UserContext } from "../../ContextProvider/UserContextProvider";
 
 
 const StoryScreen = () => {
@@ -18,7 +19,9 @@ const StoryScreen = () => {
 
     // Imported Contexts
     const {storyChapter, currentChapterDialogue } = useContext(StoryChapterContext);
-    const {assignRandomMonster, updateCurrentMonster, allMonsters, currentMonster} = useContext(MonsterContext);
+    const {assignRandomMonster, updateCurrentMonster, allMonsters } = useContext(MonsterContext);
+    const { resetHealth, userStats } = useContext(UserContext);
+
 
     // count code
 
@@ -65,6 +68,7 @@ const StoryScreen = () => {
                 buttonText: text.buttonText
             });
         } else {
+            resetHealth();
             setHidden({nextButton: "hidden", nextScreenLink: ""});
             setText({
                 chapter: "This is the end of the dialogue, begin the fight!",
@@ -77,6 +81,7 @@ const StoryScreen = () => {
             } else if (storyChapter == 3){
                 updateCurrentMonster(allMonsters[3]);
             } else {
+                console.log(userStats.currentHealth);
                 setLinkPath("/FinalScreen");
                 setText({
                     chapter: text.chapter,

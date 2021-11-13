@@ -4,6 +4,7 @@ export interface CharacterClass {
         index: number,
         name: string,
         health: number,
+        currentHealth: number,
         physAtk: number,
         physDef: number,
         magAtk: number,
