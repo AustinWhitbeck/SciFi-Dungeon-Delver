@@ -100,6 +100,26 @@ const FightScreen = () => {
             setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
         console.log(dialogueText);
         }
+
+
+    //     damageComparisonMonster(monsterDamage);
+    // // user portion of attack
+    //     damageComparisonUser(damage);
+
+    //     if (currentMonster.currentHealth > 0){
+    //     setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
+    //     console.log(dialogueText);
+    //     } else if (userStats.currentHealth == 0){
+    //         null
+    //     } else {
+    //         setHidden({attackMenu: "hidden", nextChapterMenu: ""});
+    //         setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
+    //     console.log(dialogueText);
+    //     }
+    
+
+    // // monster portion of attack
+    //     setTimeout(() => )
     }
 
         // Magic Attack
@@ -143,18 +163,21 @@ const FightScreen = () => {
             image: currentMonster.image
         })
         console.log(currentMonster);
-        updateUserStats({
-            userName: userStats.userName,
-            name: userStats.name,
-            health: userStats.health,
-            currentHealth: userDamagedHealth,
-            physAtk: userStats.physAtk,
-            physDef: userStats.physDef,
-            magAtk: userStats.magAtk,
-            magDef: userStats.magDef,
-            exp: userStats.exp,
-            image: userStats.image
-        })
+        /// setTimeout delays the function happening. This breaks up the attack from the NPC till a bit after ///
+        setTimeout(() =>
+            updateUserStats({
+                userName: userStats.userName,
+                name: userStats.name,
+                health: userStats.health,
+                currentHealth: userDamagedHealth,
+                physAtk: userStats.physAtk,
+                physDef: userStats.physDef,
+                magAtk: userStats.magAtk,
+                magDef: userStats.magDef,
+                exp: userStats.exp,
+                image: userStats.image
+            }), 500, console.log("the timeout worked?")
+        )
     }
 
     const userMagAttack = () => {
@@ -178,7 +201,9 @@ const FightScreen = () => {
 
     // Monster attack
 
+    const damageComparisonMonsterPhys = () => {
 
+    }
     
 
  

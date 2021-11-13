@@ -6,6 +6,7 @@ import { CharacterClass, UserStats } from "../Components/Model/Interfaces";
 import StreetBrawler from '../Images/StreetBrawler.jpg';
 import CyberNinja from '../Images/CyberNinja.jpg';
 import MysticSword from '../Images/MysticSword.jpg';
+import preSelectImage from '../Images/PreSelectionCharacter.jpg';
 
 
 
@@ -54,7 +55,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
         magAtk: 0,
         magDef: 0,
         exp: 0,
-        image: ""
+        image: preSelectImage
     })
 
 
@@ -75,7 +76,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             name: "Cyber Ninja",
             health: 18,
             currentHealth: 18,
-            physAtk: 4,
+            physAtk: 6,
             physDef: 1,
             magAtk: 1,
             magDef: 2,

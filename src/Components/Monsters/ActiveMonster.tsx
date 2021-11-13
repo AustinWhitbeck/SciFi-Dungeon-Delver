@@ -11,21 +11,22 @@ const ActiveMonster = () => {
     // Current Monster 
     const {currentMonster} = useContext(MonsterContext);
 
+    const monsterVisualHealth: number = (currentMonster.currentHealth / currentMonster.health) * 100;
+
     return(
         <main>
             <section>
                 <h3>{currentMonster.monsterName}</h3>
-                <p> Health: {currentMonster.currentHealth} / {currentMonster.health} </p>
                 <div className="monsterImageContainer">
                     <img className="MonsterImage" src={currentMonster.image} alt={currentMonster.monsterName} />
+                    <div style={{width: `${monsterVisualHealth}%`, height: "50px", backgroundColor: "red"}}></div>
                 </div>
-                <section>Health: {currentMonster.health}</section>
-                    <ul>
+                    {/* <ul>
                         <li>Magic Attack: {currentMonster.magAtk}</li>
                         <li>Magic Defense: {currentMonster.magDef}</li>
                         <li>Physical Attack: {currentMonster.physAtk}</li>
                         <li>Physical Defense: {currentMonster.physDef}</li>
-                    </ul>
+                    </ul> */}
             </section>
         </main>
     )
