@@ -11,10 +11,9 @@ import MysticSword from '../Images/MysticSword.jpg';
 
 
 interface UserContext  {
-    userStats: UserStats | undefined,
+    userStats: UserStats,
     updateUserStats: (stats: UserStats) => void,
     updateUserName: (newName: string) => void,
-    resetHealth: () => void,
     classList: CharacterClass[]
 }
 
@@ -33,7 +32,6 @@ const defaultUserValue: UserContext = {
     },
     updateUserStats: (stats: UserStats) => {},
     updateUserName: (newName: string) => {},
-    resetHealth: () => {},
     classList: []
 
 }
@@ -44,17 +42,17 @@ export const UserContext = React.createContext(defaultUserValue);
 
 export const UserContextProvider = ({children}: {children: ReactNode}) => {
 
-    const [userStats, setUserStats] = useState<UserStats | undefined>({
-        userName: undefined,
-        name: undefined,
-        health: undefined,
-        currentHealth: undefined,
-        physAtk: undefined,
-        physDef: undefined,
-        magAtk: undefined,
-        magDef: undefined,
-        exp: undefined,
-        image: undefined
+    const [userStats, setUserStats] = useState<UserStats>({
+        userName: "",
+        name: "",
+        health: 0,
+        currentHealth: 0,
+        physAtk: 0,
+        physDef: 0,
+        magAtk: 0,
+        magDef: 0,
+        exp: 0,
+        image: ""
     })
 
 
@@ -63,7 +61,6 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             index: 1,
             name: "Street Brawler",
             health: 14,
-            currentHealth: 14,
             physAtk: 5,
             physDef: 2,
             magAtk: 0,
@@ -74,7 +71,6 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             index: 2,
             name: "Cyber Ninja",
             health: 8,
-            currentHealth: 8,
             physAtk: 4,
             physDef: 1,
             magAtk: 1,
@@ -85,7 +81,6 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
             index: 3,
             name: "Mystic Sword",
             health: 10,
-            currentHealth: 10,
             physAtk: 2,
             physDef: 1,
             magAtk: 3,
@@ -147,7 +142,7 @@ export const UserContextProvider = ({children}: {children: ReactNode}) => {
     }
 
     return (
-        <UserContext.Provider value={{userStats, updateUserStats, updateUserName, resetHealth, classList}}>
+        <UserContext.Provider value={{userStats, updateUserStats, updateUserName, classList}}>
             {children}
         </UserContext.Provider>
     )

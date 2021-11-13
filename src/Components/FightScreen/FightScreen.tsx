@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { StoryChapterContext } from "../../ContextProvider/CurrentChapterProvider";
 import { MonsterContext } from "../../ContextProvider/CurrentMonsterProvider";
 import { UserContext } from "../../ContextProvider/UserContextProvider";
 import ActivePlayer from "../ActivePlayer/ActivePlayer";
 import AttackButton from "../Buttons/AttackButton/AttackButton";
+import RandomMonsterButton from "../Buttons/RandomMonsterButton/RandomMonsterButton";
 import DialogueBox from "../DialogueBox/DialogueBox";
 import ActiveMonster from "../Monsters/ActiveMonster";
 
@@ -48,20 +50,16 @@ const FightScreen = () => {
         return Math.floor(Math.random() * 3) 
     }
 
-    //  EXPERIMENTAL REUSABLE DAMAGE COMPARISON
-
-    // let damageComparison = (attack, defender, attackerDamage, defenderDef);npm st
-
         // User Damage
 
     let damageComparisonUser = (damage: number) => {
         if (damage <= 0) {
-            damagedHealth = currentMonster.currentHealth;
+            damagedHealth = currentMonster.health;
             console.log("you did none, or negative damage")
         }
-        else if ((currentMonster.currentHealth - damage) > 0){
-            damagedHealth = currentMonster.currentHealth - damage;
-            console.log(currentMonster.currentHealth, "this is post damage and not dropping to 0 (physical)")
+        else if ((currentMonster.health - damage) > 0){
+            damagedHealth = currentMonster.health - damage;
+            console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
         } 
     }
         
@@ -76,14 +74,13 @@ const FightScreen = () => {
 
             damageComparisonUser(damage);
 
-            if (currentMonster.currentHealth > 0){
-            setDialogueText(`${userStats?.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
-            console.log(dialogueText);
-            } else {
-                setHidden({attackMenu: "hidden", nextChapterMenu: ""});
-                setDialogueText(`${userStats?.userName} destroyed a ${currentMonster.monsterName}!`);
-            console.log(dialogueText);
-            }
+        if (currentMonster.health > 0){
+        setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
+        console.log(dialogueText);
+        } else {
+            setHidden({attackMenu: "hidden", nextChapterMenu: ""});
+            setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
+        console.log(dialogueText);
         }
     }
 
@@ -100,7 +97,7 @@ const FightScreen = () => {
         
 
 
-        if (currentMonster.currentHealth > 0){
+        if (currentMonster.health > 0){
             setDialogueText(`${userStats.userName} did ${damage} magic damage to the ${currentMonster.monsterName}!`);
             console.log(dialogueText);
             } else {
@@ -154,8 +151,6 @@ const FightScreen = () => {
 
 
     // Monster attack
-
-    // const monsterDamage
     
 
  
@@ -193,6 +188,7 @@ const FightScreen = () => {
             </section>
         </main>
     )
+}
 }
 
 export default FightScreen;

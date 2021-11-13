@@ -19,7 +19,6 @@ const defaultUserValue: MonsterContext = {
     currentMonster: {
         monsterName: "none",
         health: 0,
-        currentHealth: 0,
         physAtk: 0,
         physDef: 0,
         magAtk: 0,
@@ -43,7 +42,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
     const [currentMonster, setCurrentMonster] = useState<MonsterStats>({
         monsterName: "none",
         health: 0,
-        currentHealth: 0,
         physAtk: 0,
         physDef: 0,
         magAtk: 0,
@@ -56,7 +54,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
         setCurrentMonster({
             monsterName: stats.monsterName,
             health: stats.health,
-            currentHealth: stats.currentHealth,
             physAtk: stats.physAtk,
             physDef: stats.physDef,
             magAtk: stats.magAtk,
@@ -70,7 +67,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
         {
             monsterName: "A Wild Space Goblin",
             health: 20,
-            currentHealth: 20,
             physAtk: 2,
             physDef: 1,
             magAtk: 1,
@@ -81,7 +77,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
         {
             monsterName: "A Wild Void Appartion",
             health: 25,
-            currentHealth: 25,
             physAtk: 2,
             physDef: 2,
             magAtk: 2,
@@ -92,7 +87,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
         {
             monsterName: "Bad Guy Security",
             health: 30,
-            currentHealth: 30,
             physAtk: 3,
             physDef: 2,
             magAtk: 3,
@@ -103,7 +97,6 @@ export const MonsterContextProvider = ({children}: {children: ReactNode}) => {
         {
             monsterName: "Final Boss",
             health: 35,
-            currentHealth: 35,
             physAtk: 4,
             physDef: 2,
             magAtk: 4,

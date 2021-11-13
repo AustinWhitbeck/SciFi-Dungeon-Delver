@@ -10,23 +10,19 @@ import './SignIn.css';
 const SignIn = () => {
 
     // imported state
-    const { updateUserName}  = useContext(UserContext);
+    const {userStats, updateUserName} = useContext(UserContext);
     
     // hidden variable
-    const [ hidden, setHidden ] = useState({
+    const [hidden, setHidden] = useState({
         userName: "",
         classes: "hidden"
     });
-
-    // Navigate to go to next page
-    // const navigate = useNavigate();
 
 
     // Functions
     const handleUserNameSubmit = (e: FormEvent) => {
             e.preventDefault();
             updateUserName(loginInfo.userName);
-            // navigate('/CharacterSelect')
             setHidden({userName: "hidden", classes: ""});
     }
 
@@ -43,7 +39,7 @@ const SignIn = () => {
             <form action="submit" onSubmit={handleUserNameSubmit}>
                 <div className="InputContainer">
                     <label htmlFor="username">Character Name: </label>
-                    <input type="text" minLength={1} maxLength={15} name="username" placeholder="Name" value={loginInfo.userName} onChange={newName}/>
+                    <input type="text" name="username" placeholder="Name" value={loginInfo.userName} onChange={newName}/>
                 </div>
                 {/* <div className="InputContainer">
                     <label htmlFor="password">Password: </label>
@@ -59,4 +55,3 @@ const SignIn = () => {
 }
 
 export default SignIn;
-
