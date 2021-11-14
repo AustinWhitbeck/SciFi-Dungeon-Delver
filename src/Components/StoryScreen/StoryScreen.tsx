@@ -18,14 +18,13 @@ const StoryScreen = () => {
 
 
     // Imported Contexts
-    const {storyChapter, currentChapterDialogue } = useContext(StoryChapterContext);
+    const {storyChapter, currentChapterDialogue, count, updateCount } = useContext(StoryChapterContext);
     const {assignRandomMonster, updateCurrentMonster, allMonsters } = useContext(MonsterContext);
     const { resetHealth, userStats } = useContext(UserContext);
 
 
     // count code
 
-    const [count, setCount] = useState(0);
     console.log("this is the count on startup", count);
 
     // next screen variable
@@ -50,7 +49,7 @@ const StoryScreen = () => {
         console.log(count);
         let newCount = count + 1;
         console.log("temp variable newCount", newCount);
-        setCount(newCount);
+        updateCount(newCount);
         console.log ("this is the count after the setCount function", count);
 
     }
@@ -68,19 +67,21 @@ const StoryScreen = () => {
                 buttonText: text.buttonText
             });
         } else {
+            updateCount(0);
             resetHealth();
             setHidden({nextButton: "hidden", nextScreenLink: ""});
             setText({
                 chapter: "This is the end of the dialogue, begin the fight!",
                 buttonText: text.buttonText 
             });
+
             if (storyChapter == 1){
                 assignRandomMonster();
             } else if (storyChapter == 2){
                 updateCurrentMonster(allMonsters[2]);
             } else if (storyChapter == 3){
                 updateCurrentMonster(allMonsters[3]);
-            } else {
+            } else if (storyChapter == 4){
                 console.log(userStats.currentHealth);
                 setLinkPath("/FinalScreen");
                 setText({

@@ -27,7 +27,10 @@ const defaultStoryChapter  = {
         "You're unable to provide one and they know you shouldn't be here, they attack!"
     ]
     ],
+    count: 0,
+    updateCount: (newCount: number) => {},
     nextChapter: () => {},
+    respawnChapter: () => {}
 };
 
 
@@ -37,6 +40,9 @@ export const StoryChapterContext = React.createContext(defaultStoryChapter);
 export const StoryChapterContextProvider = ({children}: {children: ReactNode}) => {
 
     const [storyChapter, setStoryChapter] = useState(1);
+
+    const [count, setCount] = useState(0);
+
     const [currentChapterDialogue, setCurrentChapterDialogue] = useState([
         "Hello, I am the NPC who is giving you a quest Number 1",
         "This is what I want you to do. Number 2",
@@ -77,11 +83,24 @@ export const StoryChapterContextProvider = ({children}: {children: ReactNode}) =
         setCurrentChapterDialogue(newDialogue);
     }
 
+    const respawnChapter = () => {
+        let newChapter = storyChapter - 1;
+        if(storyChapter === 1){
+            newChapter = 1;
+        }
+        setStoryChapter(newChapter);
+    }
+
+    const updateCount = (newCount: number) => {
+        setCount(newCount);
+    }
+
+
 
 
 
     return (
-        <StoryChapterContext.Provider value={{storyChapter, currentChapterDialogue, allChapterDialogues, nextChapter}}>
+        <StoryChapterContext.Provider value={{storyChapter, currentChapterDialogue, allChapterDialogues, count, updateCount, nextChapter, respawnChapter}}>
             {children}
         </StoryChapterContext.Provider>
     )
