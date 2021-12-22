@@ -15,33 +15,29 @@ import '../../Images/SpaceGoblin.jpg';
 // CSS
 import "./FightScreen.css";
 import LinkButton from "../Buttons/LinkButton/LinkButton";
+import { MonsterStats, UserStats } from "../Model/Interfaces";
 
 
 const FightScreen = () => {
 
     // context providers
-    const {userStats} = useContext(UserContext);
+    const { userStats, updateUserStats } = useContext(UserContext);
     const {currentMonster, updateCurrentMonster} = useContext(MonsterContext);
-    const {nextChapter} = useContext(StoryChapterContext);
+    const {nextChapter, respawnChapter} = useContext(StoryChapterContext);
 
     // temp text for dialogue box
     const [dialogueText, setDialogueText] = useState(`${currentMonster.monsterName} Looks ready to attack!`);
-    
-
-    
-   
 
     // Variables for this page
-    let damagedHealth: number = 0;
     const [hidden, setHidden] = useState({
         attackMenu: "",
-        nextChapterMenu: "hidden"
+        nextChapterMenu: "hidden",
+        respawn: "hidden"
     });
 
 
 
-
-    // reuseable functions
+    //// Functions  ////
 
 
         // randomizer
@@ -50,100 +46,124 @@ const FightScreen = () => {
         return Math.floor(Math.random() * 3) 
     }
 
-        // User Damage
-
-    let damageComparisonUser = (damage: number) => {
-        if (damage <= 0) {
-            damagedHealth = currentMonster.health;
-            console.log("you did none, or negative damage")
-        }
-        else if ((currentMonster.health - damage) > 0){
-            damagedHealth = currentMonster.health - damage;
-            console.log(currentMonster.health, "this is post damage and not dropping to 0 (physical)")
-        } 
-    }
-        
-        // Physical Damage 
-        // NOTE/TODO: could potentially make these arguments of attacker and defender as reuseable code for the monster attacking back.
-
-    const damageComparisonUserPhys = () => {
-        let damage = (userStats.physAtk + randomisedDamage2()) - currentMonster.physDef;
-        console.log("user attack and randomized damage", damage);
-        console.log(dialogueText);
-
-        damageComparisonUser(damage);
-
-        if (currentMonster.health > 0){
-        setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
-        console.log(dialogueText);
-        } else {
-            setHidden({attackMenu: "hidden", nextChapterMenu: ""});
-            setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
-        console.log(dialogueText);
-        }
-
-    }
-
-        // Magic Attack
-
-    const damageComparisonUserMag = () => {
-        let damage = (userStats.magAtk + randomisedDamage2()) - currentMonster.magDef;
-        console.log("user attack and randomized damage", damage);
-        console.log(dialogueText);
-
-        damageComparisonUser(damage);
-
-
-        if (currentMonster.health > 0){
-            setDialogueText(`${userStats.userName} did ${damage} magic damage to the ${currentMonster.monsterName}!`);
-            console.log(dialogueText);
-            } else {
-                setHidden({attackMenu: "hidden", nextChapterMenu: ""});
-                setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
-            console.log(dialogueText);
-            }
-
-    }
-    
-    // User Attacks
-
 
     const userPhysAttack = () => {
+        // user attack first
+        allAttackLogic( userStats, currentMonster, "phys");
 
-        damageComparisonUserPhys();
-        
-        updateCurrentMonster({
-            monsterName: currentMonster.monsterName,
-            health: damagedHealth,
-            physAtk: currentMonster.physAtk,
-            physDef: currentMonster.physDef,
-            magAtk: currentMonster.magAtk,
-            magDef: currentMonster.magDef,
-            xp: currentMonster.xp,
-            image: currentMonster.image
-        })
-        console.log(currentMonster);
+        // monster attack second with a delay
+        if(currentMonster.currentHealth <= 0){
+            console.log("monster already dead");
+        } else {
+            setTimeout(() => 
+                allAttackLogic( currentMonster, userStats, "phys"),
+                1000,
+                console.log("timeout worked?")
+            )
+        }
+
     }
 
     const userMagAttack = () => {
+        // user attack first
+        allAttackLogic( userStats, currentMonster, "mag");
 
-        damageComparisonUserMag();
-
-        updateCurrentMonster({
-            monsterName: currentMonster.monsterName,
-            health: damagedHealth,
-            physAtk: currentMonster.physAtk,
-            physDef: currentMonster.physDef,
-            magAtk: currentMonster.magAtk,
-            magDef: currentMonster.magDef,
-            xp: currentMonster.xp,
-            image: currentMonster.image
-        })
-        console.log(currentMonster);
+        // monster attack second with a delay
+        if(currentMonster.currentHealth <= 0){
+            console.log("monster already dead");
+        } else {
+            setTimeout(() => 
+                allAttackLogic( currentMonster, userStats, "mag"),
+                1000,
+                console.log("timeout worked?")
+            )
+        }
     }
 
+    
 
-    // Monster attack
+    ///// ATTEMPT AT COMBINING THE FUNCTION FOR ATTACKING /////
+        // attacker, defender, phys, mag,  monster and player damage
+
+    const allAttackLogic = (attacker: UserStats | MonsterStats, defender: UserStats | MonsterStats, attackType: string) => {
+        let damage = 0;
+        let type = attackType;
+        let damagedDefenderHealth = defender.currentHealth;
+
+        /// determine the type of damage then compare the attacker damage type to defender damage type.
+        if( type == "phys" ){
+            damage = (attacker.physAtk + randomisedDamage2()) - defender.physDef;
+            console.log(damage);
+        } else if( type == "mag" ){
+            damage = (attacker.magAtk + randomisedDamage2()) - defender.magDef;
+            console.log(damage);
+        }
+
+        /// now that the damage type is determined by type and how much it is, compare it against the defender
+        if (damage <= 0){
+            damagedDefenderHealth = defender.currentHealth;
+            console.log(`attacker did none or negative damage`);
+        } else {
+            damagedDefenderHealth = defender.currentHealth - damage;
+            console.log(`attacker did ${damage} to defender leaving ${defender.currentHealth} left.`)
+        }
+
+
+        // now update the defenders health after damage
+
+            // if Monster
+        if ( attacker == userStats ){
+            updateCurrentMonster({
+                monsterName: currentMonster.monsterName,
+                health: currentMonster.health,
+                currentHealth: damagedDefenderHealth,
+                physAtk: currentMonster.physAtk,
+                physDef: currentMonster.physDef,
+                magAtk: currentMonster.magAtk,
+                magDef: currentMonster.magDef,
+                xp: currentMonster.xp,
+                image: currentMonster.image
+            })
+            console.log(currentMonster.currentHealth);
+        } 
+            // if User
+        else if ( attacker == currentMonster ){
+            updateUserStats({
+                userName: userStats.userName,
+                name: userStats.name,
+                health: userStats.health,
+                currentHealth: damagedDefenderHealth,
+                physAtk: userStats.physAtk,
+                physDef: userStats.physDef,
+                magAtk: userStats.magAtk,
+                magDef: userStats.magDef,
+                exp: userStats.exp,
+                image: userStats.image
+            })
+            console.log(userStats.currentHealth)
+        }
+
+        /// Update the text box to reflect the attacker's damage.
+        if(attacker == userStats && defender == currentMonster){
+            if (defender.currentHealth > 0 ){
+                setDialogueText(`${userStats.userName} did ${damage} physical damage to the ${currentMonster.monsterName}!`);
+                console.log(dialogueText);
+                }  else {
+                    setHidden({attackMenu: "hidden", nextChapterMenu: "", respawn: "hidden"});
+                    setDialogueText(`${userStats.userName} destroyed a ${currentMonster.monsterName}!`);
+                console.log(dialogueText);
+                }
+        } else if (attacker == currentMonster && defender == userStats){
+            if (defender.currentHealth > 0 ){
+                setDialogueText(`${currentMonster.monsterName} did ${damage} physical damage to the ${userStats.userName}!`);
+                console.log(dialogueText);
+                } else if (defender.currentHealth <= 0){
+                    setHidden({attackMenu: "hidden", nextChapterMenu: "hidden", respawn: ""})
+                    setDialogueText(`Our hero ${userStats.userName} has been felled by ${currentMonster.monsterName}! A tragedy.`);
+                }
+        }
+
+    }
     
 
  
@@ -179,8 +199,16 @@ const FightScreen = () => {
                 text="Next Chapter"
                 />
             </section>
+            <section className={hidden.respawn}>
+                <LinkButton
+                link="/StoryScreen"
+                onClick={ respawnChapter }
+                text="Respawn"
+                />
+            </section>
         </main>
     )
+    
 }
 
 export default FightScreen;

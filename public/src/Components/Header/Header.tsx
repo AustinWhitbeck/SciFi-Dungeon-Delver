@@ -11,15 +11,20 @@ const Header = () => {
 
     const {userStats} = useContext(UserContext);
     
+        let hidden = "";
+        if(userStats?.userName){
+            hidden = "HeaderUserName";
+        }
 
-    return(
-        <header className="HeaderContainer">
-            <div>
-                <h2 className="HeaderUserName">{userStats.userName} the {userStats.name}.</h2>
-            </div>
-            <HeaderNav/>
-        </header>
-    )
+        return(
+            <header className="HeaderContainer">
+                <div>
+                    <h2 className="HeaderUserName">{userStats?.userName} the {userStats?.name}.</h2>
+                </div>
+                <HeaderNav/>
+            </header>
+        )
+    
 }
 
 

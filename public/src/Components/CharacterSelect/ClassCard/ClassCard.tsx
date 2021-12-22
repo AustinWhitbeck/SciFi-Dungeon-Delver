@@ -28,7 +28,7 @@ const ClassCard = ({characterClass, index}: Props) => {
             <form action="submit" onSubmit={handleSubmit}>
             <h4>{characterClass.name}</h4>
             <section className="ClassImageContainer">
-                <img className="ClassImage" src={classList[index].image} alt={userStats.name} />
+                <img className="ClassImage" src={classList[index].image} alt={userStats?.name} />
             </section>
             <div>
                 <p>Physical Attack: {characterClass.physAtk}</p>
